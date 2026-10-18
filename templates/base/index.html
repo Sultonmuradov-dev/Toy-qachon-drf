@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>To'y Reja — to'yingizni oson rejalashtiring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body data-next="/dashboard/">
+
+<!-- Rasm qo'shish uchun: <header class="hero" style="--photo:url('{% static 'img/hero.jpg' %}')"> -->
+<header class="hero">
+  <div class="lnav"><div class="wrap">
+    <a class="brand" href=""><span class="heart">♥</span> To'y Reja</a>
+    <ul>
+      <li><a href="#imkoniyatlar">Imkoniyatlar</a></li>
+      <li><a href="#nega">Nega biz</a></li>
+      <li><a href="#qadamlar">Qanday ishlaydi</a></li>
+      <li><button class="btn sm" data-open="login">Kirish</button></li>
+    </ul>
+  </div></div>
+  <div class="wrap">
+    <h1>To'yingizni oson rejalashtiring</h1>
+    <p>Mehmonlar, byudjet, vazifalar va xizmat ko'rsatuvchilar — barchasi bir joyda. To'y tashkil qilishni yanada oson qiling.</p>
+    <div class="acts">
+      <button class="btn" data-open="register">Bepul boshlash</button>
+      <a class="btn ghost" href="#qadamlar">Qanday ishlaydi?</a>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="imkoniyatlar"><div class="wrap">
+  <h2>Saytda nimalar qilish mumkin</h2>
+  <p class="lead">To'y — ko'p ishlar yig'indisi. To'y Reja ularni to'rtta bo'limga ajratib, hammasini nazoratda saqlaydi.</p>
+  <div class="g4">
+    <div class="card fcard"><div class="ico">👥</div><h3>Mehmonlar ro'yxati</h3><p>Kimni chaqirdingiz, kim tasdiqladi, necha kishiga taom kerak — avtomatik hisoblanadi.</p></div>
+    <div class="card fcard"><div class="ico">💰</div><h3>Byudjet nazorati</h3><p>Har bir kategoriya bo'yicha reja va haqiqiy xarajatni solishtiring, qolgan mablag'ni ko'ring.</p></div>
+    <div class="card fcard"><div class="ico">🏛️</div><h3>Vendorlar katalogi</h3><p>To'yxona, fotograf, dekorator va boshqalar — narx va aloqa ma'lumotlari bilan.</p></div>
+    <div class="card fcard"><div class="ico">✅</div><h3>Vazifalar va eslatmalar</h3><p>To'yga qolgan vaqtga qarab nima qilish kerakligini ko'rsatadi, hech narsani unutmaysiz.</p></div>
+  </div>
+</div></section>
+
+<section class="sec alt" id="nega"><div class="wrap">
+  <h2>Nega aynan To'y Reja?</h2>
+  <p class="lead">Ko'pchilik to'yni Excel, daftar va chat guruhlarida boshqaradi. Ma'lumotlar tarqoq bo'lib, byudjet oshib ketadi, mehmonlar hisobi adashadi.</p>
+  <div class="g4">
+    <div class="fcard"><div class="ico">✨</div><h3>Oson foydalanish</h3><p>Murakkab sozlamalar yo'q. Ro'yxatdan o'ting va darhol boshlang.</p></div>
+    <div class="fcard"><div class="ico">🗂️</div><h3>Hammasi bir joyda</h3><p>Mehmon, xarajat, vazifa va vendor ma'lumotlari tarqalib ketmaydi.</p></div>
+    <div class="fcard"><div class="ico">⏱️</div><h3>Vaqt va pulni tejaydi</h3><p>Byudjet doim ko'z oldingizda, ortiqcha xarajat oldindan ko'rinadi.</p></div>
+    <div class="fcard"><div class="ico">🔒</div><h3>Ishonchli va xavfsiz</h3><p>Ma'lumotlaringiz faqat sizga ko'rinadi va uchinchi tomonga berilmaydi.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="qadamlar"><div class="wrap">
+  <h2>Uch qadamda boshlang</h2>
+  <p class="lead">Ro'yxatdan o'tish bir daqiqa oladi.</p>
+  <div class="g3">
+    <div class="card step"><b>1</b><h3>Ro'yxatdan o'ting</h3><p>Telefon raqamingiz va parol yetarli.</p></div>
+    <div class="card step"><b>2</b><h3>To'y sanasini kiriting</h3><p>Tizim necha kun qolganini va nima qilish kerakligini ko'rsatadi.</p></div>
+    <div class="card step"><b>3</b><h3>Mehmon va xarajatlarni qo'shing</h3><p>Ma'lumotlar bir joyda to'planadi va doim yangilanib turadi.</p></div>
+  </div>
+</div></section>
+
+<section class="quote">
+  <h2>Orzudagi to'y — endi rejalashtirish emas, balki zavq!</h2>
+  <button class="btn" data-open="register">Bepul boshlash</button>
+</section>
+<footer class="lf">© 2026 To'y Reja. Barcha huquqlar himoyalangan.</footer>
+
+<dialog id="auth" aria-labelledby="at">
+  <button class="x" id="closeAuth" aria-label="Yopish">&times;</button>
+  <h2 id="at">Tizimga kirish</h2>
+  <div class="dtabs" role="tablist">
+    <button role="tab" data-mode="login" aria-selected="true">Kirish</button>
+    <button role="tab" data-mode="register" aria-selected="false">Ro'yxatdan o'tish</button>
+  </div>
+  <form id="authForm">
+    <label for="phone">Telefon raqami</label>
+    <input id="phone" type="tel" placeholder="+998901234567" required autocomplete="tel">
+    <label for="pass">Parol</label>
+    <input id="pass" type="password" required autocomplete="current-password">
+    <p id="err" role="alert"></p>
+    <button class="btn" id="submitBtn" type="submit">Kirish</button>
+  </form>
+</dialog>
+<script src="{% static 'style.js' %}"></script>
+</body>
+</html>

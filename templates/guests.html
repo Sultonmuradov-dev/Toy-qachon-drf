@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Mehmonlar{% endblock %}
+{% block content %}
+<div class="head"><div><h1>Mehmonlar ro'yxati</h1><p class="sub">Barcha mehmonlaringizni boshqaring</p></div>
+<button class="btn">+ Mehmon qo'shish</button></div>
+
+<div class="stats">
+  <div class="card stat a"><small>Jami mehmonlar</small><b>128</b></div>
+  <div class="card stat b"><small>Kelin tomoni</small><b>62</b></div>
+  <div class="card stat c"><small>Kuyov tomoni</small><b>66</b></div>
+  <div class="card stat d"><small>Taomnoma uchun</small><b>128 kishiga</b></div>
+</div>
+
+<div class="tools">
+  <input type="search" placeholder="Ism yoki telefon bo'yicha qidirish" aria-label="Qidirish">
+  <select aria-label="Tomon"><option>Barcha tomonlar</option><option>Kelin tomoni</option><option>Kuyov tomoni</option></select>
+  <select aria-label="Holat"><option>Barcha statuslar</option><option>Tasdiqladi</option><option>Taklif qilindi</option><option>Kelmaydi</option></select>
+</div>
+
+<!-- Namuna qatorlar; keyinroq {% for g in guests %} bilan almashtiriladi -->
+<div class="card scroll"><table>
+  <thead><tr><th>Ism</th><th>Telefon</th><th>Tomon</th><th>Status</th><th>Guruh</th></tr></thead>
+  <tbody>
+    <tr><td>Azizbek Karimov</td><td>+998 90 123 45 67</td><td>Kelin tomoni</td><td><span class="pill ok">Tasdiqladi</span></td><td>Oila</td></tr>
+    <tr><td>Dilshod Rahimov</td><td>+998 91 234 56 78</td><td>Kuyov tomoni</td><td><span class="pill wait">Taklif qilindi</span></td><td>Do'stlar</td></tr>
+    <tr><td>Madina Ilxomova</td><td>+998 93 345 67 89</td><td>Kelin tomoni</td><td><span class="pill ok">Tasdiqladi</span></td><td>Hamkasblar</td></tr>
+    <tr><td>Bekzod Usmonov</td><td>+998 94 456 78 90</td><td>Kuyov tomoni</td><td><span class="pill no">Kelmaydi</span></td><td>Do'stlar</td></tr>
+    <tr><td>Sarvinoz Tursunova</td><td>+998 95 567 89 01</td><td>Kelin tomoni</td><td><span class="pill ok">Tasdiqladi</span></td><td>Oila</td></tr>
+  </tbody>
+</table></div>
+{% endblock %}
