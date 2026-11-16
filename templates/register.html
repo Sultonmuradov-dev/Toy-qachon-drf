@@ -1,0 +1,51 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ro'yxatdan o'tish — To'y Rejalashtiruvchi</title>
+  <link rel="stylesheet" href="{% static 'apps/style.css' %}">
+  <link rel="stylesheet" href="{% static 'apps/auth.css' %}">
+</head>
+<body class="auth-body">
+
+<div class="auth-wrap">
+  <a class="auth-brand brand" href="{% url 'welcome' %}">Nikoh<span>Plan</span></a>
+
+  <div class="card auth-card">
+    <h1>Hisob yaratish</h1>
+    <p class="muted">Telefon raqam va parol bilan ro'yxatdan o'ting.</p>
+
+    <form class="auth-form" id="registerForm">
+      <label>Telefon raqam
+        <input class="input" name="phone_number" id="phone_number" type="tel" inputmode="tel"
+               placeholder="+998 (__) ___-__-__" maxlength="19" required>
+      </label>
+      <label>Parol
+        <input class="input" name="password" id="password" type="password" minlength="6" required autocomplete="new-password">
+      </label>
+      <label>Parolni tasdiqlang
+        <input class="input" name="confirm_password" id="confirm_password" type="password" minlength="6" required autocomplete="new-password">
+      </label>
+
+      <div class="auth-error" id="registerError"></div>
+
+      <button type="submit" class="btn btn-gold btn-block btn-lg">Ro'yxatdan o'tish</button>
+    </form>
+
+    <p class="auth-switch muted">
+      Hisobingiz bormi? <a href="{% url 'login' %}">Kirish</a>
+    </p>
+  </div>
+
+  <a class="auth-back muted" href="{% url 'welcome' %}">← Bosh sahifaga qaytish</a>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="{% static 'apps/style.js' %}"></script>
+<script src="{% static 'apps/auth.js' %}"></script>
+</body>
+</html>

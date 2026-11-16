@@ -1,0 +1,123 @@
+{% load static  %}
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To'y Rejalashtiruvchi — Boshlash</title>
+  <link rel="stylesheet" href="{% static 'apps/style.css' %}">
+  <link rel="stylesheet" href="{% static 'apps/auth.css' %}">
+</head>
+<body class="welcome-body">
+
+<header class="welcome-nav">
+  <div class="brand">Nikoh<span>Plan</span></div>
+  <div class="welcome-nav-actions">
+    <a class="btn" href="{% url 'login' %}">Kirish</a>
+    <a class="btn btn-gold" href="{% url 'register' %}">Ro'yxatdan o'tish</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">To'y rejalashtirish platformasi</p>
+    <h1>Orzuyingizdagi to'yni <span>tartib</span> bilan rejalashtiring</h1>
+    <p class="hero-sub">
+      To'y tayyorgarligi Excel, qog'oz va messenjer guruhlarida tarqalib ketmasin.
+      NikohPlan orqali mehmonlarni, byudjetni, vazifalarni va ishonchli vendorlarni
+      bir joyda boshqaring.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-gold btn-lg" href="{% url 'register' %}">Bepul boshlash</a>
+      <a class="btn btn-lg" href="{%  url 'login' %}">Hisobim bor</a>
+    </div>
+  </div>
+  <div class="hero-card card">
+    <div class="hero-stat">
+      <div class="stat-icon">⏳</div>
+      <div>
+        <b>77 kun</b>
+        <span class="muted">to'ygacha qoldi</span>
+      </div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-icon">👥</div>
+      <div>
+        <b>150 mehmon</b>
+        <span class="muted">96 tasdiqlangan</span>
+      </div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-icon">💰</div>
+      <div>
+        <b>64% byudjet</b>
+        <span class="muted">sarflangan, nazorat ostida</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <h2>Nima qila olasiz?</h2>
+  <div class="features-grid">
+    <div class="card feature">
+      <div class="stat-icon">👥</div>
+      <h3>Mehmonlar ro'yxati</h3>
+      <p class="muted">Taklif qilingan, tasdiqlagan va kelmaydigan mehmonlarni kuzating. Kelin va kuyov tomonini alohida ko'ring.</p>
+    </div>
+    <div class="card feature">
+      <div class="stat-icon">💰</div>
+      <h3>Byudjet kalkulyatori</h3>
+      <p class="muted">Har bir kategoriya uchun rejalashtirilgan va sarflangan summani solishtiring. Byudjetdan oshib ketishni oldindan biling.</p>
+    </div>
+    <div class="card feature">
+      <div class="stat-icon">✅</div>
+      <h3>Vazifalar va timeline</h3>
+      <p class="muted">To'y sanasiga qarab vazifalar ro'yxati. Muddati yaqinlashganda ogohlantirish oling.</p>
+    </div>
+    <div class="card feature">
+      <div class="stat-icon">🏛</div>
+      <h3>Vendorlar katalogi</h3>
+      <p class="muted">To'yxona, fotograf, dekorator, kelinlik salon va musiqachilarni kategoriya va narx bo'yicha toping.</p>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <h2>Qanday ishlaydi?</h2>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Ro'yxatdan o'ting</h3>
+      <p class="muted">Username, email va parol bilan bir daqiqada hisob oching.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>To'y sanasini kiriting</h3>
+      <p class="muted">Sayt qolgan kunlarni hisoblab, sizga mos vazifalar ro'yxatini tayyorlaydi.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Boshqarishni boshlang</h3>
+      <p class="muted">Mehmon, byudjet va vazifalarni bir joydan kuzating.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta card">
+  <div>
+    <h2>Tayyorgarlikni bugundan boshlang</h2>
+    <p class="muted">Hisob ochish bepul. Kerakli barcha bo'limlar bir joyda.</p>
+  </div>
+  <a class="btn btn-gold btn-lg" href="{% url 'register' %}">Ro'yxatdan o'tish</a>
+</section>
+
+<footer class="welcome-footer">
+  <span class="muted">© 2026 NikohPlan · To'y Rejalashtiruvchi</span>
+</footer>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="{%  static 'apps/style.js' %}"></script>
+</body>
+</html>

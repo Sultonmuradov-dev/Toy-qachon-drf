@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Byudjet — To'y Rejalashtiruvchi</title>
+  <link rel="stylesheet" href="{% static 'apps/style.css' %}">
+  <link rel="stylesheet" href="{% static 'apps/auth.css' %}">
+</head>
+<body data-protected="true">
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">Nikoh<span>Plan</span></div>
+
+    <a class="nav-link" data-nav href="{% url 'index' %}">🏠 Bosh sahifa</a>
+
+    <div class="nav-title">Boshqaruv</div>
+    <a class="nav-link" data-nav href="{% url 'guests' %}">👥 Mehmonlar</a>
+    <a class="nav-link" data-nav href="{% url 'budget' %}">💰 Byudjet</a>
+    <a class="nav-link" data-nav href="{% url 'tasks' %}">✅ Vazifalar</a>
+
+    <div class="nav-title">Katalog</div>
+    <a class="nav-link" data-nav href="{% url 'vendors' %}">🏛 Vendorlar</a>
+
+    <div class="sidebar-footer">
+      <button class="btn btn-gold btn-block" id="quickAddBtn">+ Tez qo'shish</button>
+    </div>
+  </aside>
+
+  <div class="backdrop" id="backdrop"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="btn btn-ghost menu-btn" id="menuBtn" aria-label="Menyu">☰</button>
+      <div class="topbar-right">
+        <span class="bell">🔔</span>
+        <span class="user-chip">Yodgor</span>
+        <button class="btn btn-ghost" id="logoutBtn">Chiqish</button>
+      </div>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">Byudjet kalkulyatori</p>
+        <h1>Byudjet</h1>
+      </div>
+      <button class="btn btn-gold" id="addBudgetBtn">+ Kategoriya qo'shish</button>
+    </div>
+
+    <section class="grid g-4">
+      <div class="card stat"><div class="stat-icon">🎯</div><div class="stat-value" id="budgetTotal">0</div><div class="stat-label">Umumiy byudjet</div></div>
+      <div class="card stat"><div class="stat-icon">💸</div><div class="stat-value" id="budgetSpent">0</div><div class="stat-label">Sarflangan</div></div>
+      <div class="card stat"><div class="stat-icon">🏦</div><div class="stat-value" id="budgetLeft">0</div><div class="stat-label">Qolgan mablag'</div></div>
+      <div class="card stat"><div class="stat-icon">📊</div><div class="stat-value" id="budgetPct">0%</div><div class="stat-label">Umumiy sarf</div></div>
+    </section>
+
+    <section class="grid g-2 mt">
+      <div class="card">
+        <div class="card-head"><h2>Kategoriyalar</h2></div>
+        <div id="categoryList"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h2>Taqsimot</h2></div>
+        <ul id="distribution" style="list-style:none; display:flex; flex-direction:column; gap:12px;"></ul>
+      </div>
+    </section>
+
+    <section class="card mt">
+      <div class="card-head"><h2>Xarajatlar jadvali</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Kategoriya</th><th>Rejalashtirilgan</th><th>Sarflangan</th><th>Qolgan</th><th>Izoh</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="budgetRows"></tbody>
+        </table>
+        <div class="empty" id="budgetEmpty" style="display:none">Hali kategoriya qo'shilmagan</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Qo'shish / tahrirlash modali -->
+<div class="modal" id="budgetModal">
+  <form class="modal-box" id="budgetForm">
+    <h3 id="budgetModalTitle">Yangi kategoriya</h3>
+    <div class="form-grid">
+      <label class="full">Kategoriya nomi
+        <input class="input" name="category" required>
+      </label>
+      <label>Rejalashtirilgan summa
+        <input class="input" name="planned_amount" type="number" min="0" required>
+      </label>
+      <label>Sarflangan summa
+        <input class="input" name="spent_amount" type="number" min="0" required>
+      </label>
+      <label class="full">Izoh
+        <input class="input" name="note">
+      </label>
+    </div>
+    <p class="auth-error" id="budgetError"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn" id="cancelBudgetBtn">Bekor qilish</button>
+      <button type="submit" class="btn btn-gold">Saqlash</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="{% static 'apps/style.js' %}"></script>
+<script src="{% static 'apps/auth.js' %}"></script>
+<script src="{% static 'apps/budget.js' %}"></script>
+</body>
+</html>

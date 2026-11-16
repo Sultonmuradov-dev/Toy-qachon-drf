@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendorlar — To'y Rejalashtiruvchi</title>
+  <link rel="stylesheet" href="{% static 'apps/style.css' %}">
+  <link rel="stylesheet" href="{% static 'apps/auth.css' %}">
+</head>
+<body data-protected="true">
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">Nikoh<span>Plan</span></div>
+
+    <a class="nav-link" data-nav href="{% url 'index' %}">🏠 Bosh sahifa</a>
+
+    <div class="nav-title">Boshqaruv</div>
+    <a class="nav-link" data-nav href="{% url 'guests' %}">👥 Mehmonlar</a>
+    <a class="nav-link" data-nav href="{% url 'budget' %}">💰 Byudjet</a>
+    <a class="nav-link" data-nav href="{% url 'tasks' %}">✅ Vazifalar</a>
+
+    <div class="nav-title">Katalog</div>
+    <a class="nav-link" data-nav href="{% url 'vendors' %}">🏛 Vendorlar</a>
+
+    <div class="sidebar-footer">
+      <a class="btn btn-gold btn-block" href="/admin/apps/vendor/add/" target="_blank" rel="noopener">+ Vendor qo'shish</a>
+    </div>
+  </aside>
+
+  <div class="backdrop" id="backdrop"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="btn btn-ghost menu-btn" id="menuBtn" aria-label="Menyu">☰</button>
+      <div class="topbar-right">
+        <span class="bell">🔔</span>
+        <span class="user-chip" id="userChip">Yodgor</span>
+        <button class="btn btn-ghost" id="logoutBtn">Chiqish</button>
+      </div>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">Katalog</p>
+        <h1>Vendorlar</h1>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="toolbar">
+        <div class="tabs" id="categoryTabs">
+          <button class="tab active" data-category="all">Hammasi</button>
+          <button class="tab" data-category="venue">To'yxona</button>
+          <button class="tab" data-category="photo">Fotograf</button>
+          <button class="tab" data-category="decor">Dekorator</button>
+          <button class="tab" data-category="bridal">Kelinlik salon</button>
+          <button class="tab" data-category="music">Musiqachilar</button>
+          <button class="tab" data-category="catering">Oshxona</button>
+        </div>
+        <div class="toolbar-left">
+          <input class="input" id="vendorSearch" placeholder="Nomi yoki shahar...">
+          <select class="select" id="priceFilter">
+            <option value="">Barcha narx</option>
+            <option value="0-5000000">5 mln gacha</option>
+            <option value="5000000-15000000">5–15 mln</option>
+            <option value="15000000-">15 mln dan yuqori</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <div class="vendor-grid mt" id="vendorGrid"></div>
+    <div class="empty" id="vendorEmpty" style="display:none">Vendor topilmadi</div>
+  </main>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="{% static 'apps/style.js' %}"></script>
+<script src="{% static 'apps/auth.js' %}"></script>
+<script src="{% static 'apps/vendors.js' %}"></script>
+</body>
+</html>

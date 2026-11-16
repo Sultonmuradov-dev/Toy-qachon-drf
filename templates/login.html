@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kirish — To'y Rejalashtiruvchi</title>
+  <link rel="stylesheet" href="{% static 'apps/style.css' %}">
+  <link rel="stylesheet" href="{% static 'apps/auth.css' %}">
+</head>
+<body class="auth-body">
+
+<div class="auth-wrap">
+  <a class="auth-brand brand" href="{% url 'welcome' %}">Nikoh<span>Plan</span></a>
+
+  <div class="card auth-card">
+    <h1>Xush kelibsiz</h1>
+    <p class="muted">Telefon raqam va parol bilan kiring.</p>
+
+    <form class="auth-form" id="loginForm">
+      <label>Telefon raqam
+        <input class="input" name="phone_number" id="phone_number" type="tel" inputmode="tel"
+               placeholder="+998 (__) ___-__-__" maxlength="19" required>
+      </label>
+      <label>Parol
+        <input class="input" name="password" type="password" required autocomplete="current-password">
+      </label>
+
+      <div class="auth-error" id="loginError"></div>
+
+      <button type="submit" class="btn btn-gold btn-block btn-lg">Kirish</button>
+    </form>
+
+    <p class="auth-switch muted">
+      Hisobingiz yo'qmi? <a href="{% url 'register' %}">Ro'yxatdan o'ting</a>
+    </p>
+  </div>
+
+  <a class="auth-back muted" href="{% url 'welcome' %}">← Bosh sahifaga qaytish</a>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="{% static 'apps/style.js' %}"></script>
+<script src="{% static 'apps/auth.js' %}"></script>
+</body>
+</html>
