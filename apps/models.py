@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE
 from django.db.models.enums import TextChoices
-from django.db.models import CharField, BigIntegerField,  DateField, BooleanField, Model
+from django.db.models import CharField, BigIntegerField,  DateField, BooleanField, Model , TextField, DecimalField, ImageField, URLField, PositiveSmallIntegerField
 from django.db.models.fields.related import ForeignKey
 
 from apps.managers import UserManager
@@ -56,6 +56,70 @@ class Guests(Model):
     def __str__(self):
         return self.full_name
 
+class BudgetItem(Model):
+    user = ForeignKey('apps.User', on_delete=CASCADE, related_name='budget_items')
+    category = CharField(max_length=255)
+    planned_amount = BigIntegerField(default=0)
+    spent_amount = BigIntegerField(default=0)
+    note = CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.category
+
+class Task(Model):
+    class PriorityType(TextChoices):
+        HIGH = 'high', 'Yuqori'
+        MEDIUM = 'medium', 'O`rta'
+        LOW = 'low', 'Past'
+
+    user = ForeignKey('apps.User', on_delete=CASCADE, related_name='tasks')
+    title = CharField(max_length=255)
+    description = TextField(blank=True)
+    due_date = DateField(null=True, blank=True)
+    priority = CharField(max_length=10, choices=PriorityType.choices, default=PriorityType.MEDIUM)
+    is_done = BooleanField(default=False)
+
+    class Meta:
+        ordering = ['is_done', 'due_date']
+
+    def __str__(self):
+        return self.title
+
+class Vendor(Model):
+    class CategoryType(TextChoices):
+        VENUE = 'venue', 'To`yxona'
+        PHOTO = 'photo', 'Fotograf va Video'
+        DECOR = 'decor', 'Dekarator'
+        BRIDAL = 'bridal', 'Kelinlik saloni'
+        MUSIC = 'music', 'Hofizlar'
+        CATERING = 'catering', 'Oshxona xizmati'
+
+    name = CharField(max_length=255)
+    category = CharField(max_length=20, choices=CategoryType.choices)
+    description = TextField(blank=True)
+    city = CharField(max_length=100, blank=True)
+    address = CharField(max_length=255, blank=True)
+    phone_number = CharField(max_length=20, blank=True)
+    instagram_url = URLField(blank=True)
+    price_min = BigIntegerField(null=True, blank=True)
+    price_max = BigIntegerField(null=True, blank=True)
+    rating = DecimalField(max_digits=2, decimal_places=1, default=0)
+    cover_image = ImageField(upload_to='vendors/covers/', blank=True, null=True)
+    is_active = BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-rating', 'name']
+
+    def __str__(self):
+        return self.name
+
+
+class VendorImage(Model):
+    vendor = ForeignKey('apps.Vendor', on_delete=CASCADE, related_name='images')
+    image = ImageField(upload_to='vendors/gallery/')
+
+    def __str__(self):
+        return f'{self.vendor.name} — rasm'
 
 
     

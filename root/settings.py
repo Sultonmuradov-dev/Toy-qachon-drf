@@ -1,3 +1,4 @@
+from datetime import timedelta
 from os.path import join
 from pathlib import Path
 
@@ -100,7 +101,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = join(BASE_DIR, 'static')
-# STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
@@ -125,9 +125,14 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
+    'TITLE': 'To`y qachon API',
+    'DESCRIPTION': 'O"z to"yingizni  yugur-yugurlarni kamaytirish uchun oldindan rejalashtiring',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
