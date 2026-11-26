@@ -437,3 +437,136 @@ tbody tr:hover { background: #fdf8f2; }
   .stat-value { font-size: 30px; }
   .toolbar .input { min-width: 0; width: 100%; }
 }
+
+/* =========================================================
+   PROFIL VA SOZLAMALAR
+   ========================================================= */
+.g-3 { grid-template-columns: repeat(3, 1fr); }
+.profile-grid { grid-template-columns: minmax(280px, 1fr) 1.7fr; align-items: start; }
+
+/* ---------- Profil kartasi ---------- */
+.profile-card { position: relative; overflow: hidden; text-align: center; padding: 34px 26px 26px; }
+.profile-card::before {      /* tepadagi oltin-atirgul fon */
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 96px;
+  background: linear-gradient(135deg, #f3dfb0 0%, var(--rose) 100%); opacity: .55;
+}
+.profile-card::after {
+  content: ""; position: absolute; right: -34px; top: -40px; width: 140px; height: 140px;
+  background: url("img/floral.svg") no-repeat center / contain; transform: scaleX(-1); opacity: .8;
+  pointer-events: none;
+}
+.profile-card > * { position: relative; z-index: 1; }
+.profile-avatar {
+  width: 96px; height: 96px; margin: 8px auto 14px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--gold-grad); color: #fff;
+  font-family: var(--serif); font-size: 36px; font-weight: 600; letter-spacing: .02em;
+  box-shadow: 0 0 0 5px #fff, 0 0 0 6px var(--gold-l), 0 14px 30px -12px rgba(154, 112, 36, .8);
+}
+.profile-name { font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1.15; }
+.profile-badges { margin: 12px 0 4px; }
+.profile-badges .badge:not(.amber) { background: var(--gold-soft); color: var(--gold-d); border-color: transparent; }
+
+.profile-countdown {
+  margin: 20px 0 18px; padding: 18px 12px; border-radius: 16px;
+  background: linear-gradient(135deg, #fdf6ec, var(--rose-soft)); border: 1px solid #f0e0d4;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.countdown-num {
+  font-family: var(--serif); font-size: 52px; font-weight: 600; line-height: 1;
+  font-variant-numeric: lining-nums;
+  background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.countdown-label { font-family: var(--script); font-size: 24px; color: var(--rose-d); line-height: 1.2; }
+
+.profile-meta { list-style: none; text-align: left; }
+.profile-meta li {
+  display: flex; justify-content: space-between; gap: 12px; padding: 11px 2px;
+  border-top: 1px dashed var(--line); font-size: 13.5px;
+}
+.profile-meta span { color: var(--muted); }
+.profile-meta b { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ---------- Formalar ---------- */
+.settings-form { display: flex; flex-direction: column; gap: 14px; }
+.settings-form label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 500; color: #6b5e55; }
+.settings-form .input { width: 100%; padding: 12px 14px; }
+.settings-form .input:disabled { background: #f7f1ea; color: var(--muted); cursor: not-allowed; }
+.settings-form small { font-size: 12px; font-weight: 400; }
+.hint { font-style: normal; font-weight: 500; font-size: 11px; color: var(--rose-d); background: var(--rose-soft); padding: 1px 8px; border-radius: 999px; margin-left: 4px; }
+.form-actions { display: flex; justify-content: flex-end; }
+
+/* ---------- Tayyorgarlik holati ---------- */
+.summary {
+  display: block; padding: 18px; border-radius: 14px; border: 1px solid var(--line); background: #fff;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.summary:hover { transform: translateY(-3px); border-color: var(--gold-l); box-shadow: var(--shadow); }
+.summary .bar-top span { font-weight: 500; }
+.summary .progress { margin-bottom: 8px; }
+
+/* ---------- Til tanlash ---------- */
+.lang-options { display: flex; flex-direction: column; gap: 10px; }
+.lang-option {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 14px; background: #fff;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.lang-option:hover { border-color: var(--gold-l); }
+.lang-option input { position: absolute; opacity: 0; pointer-events: none; }
+.lang-code {
+  width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0;
+  background: var(--rose-soft); border: 1px solid var(--rose); color: var(--gold-d);
+  font-weight: 700; font-size: 13px; letter-spacing: .04em;
+}
+.lang-text { display: flex; flex-direction: column; flex: 1; }
+.lang-text b { font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.2; }
+.lang-text small { color: var(--muted); font-size: 12.5px; }
+.lang-option::after {        /* o'ngdagi belgi doirasi */
+  content: ""; width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  border: 1.5px solid var(--line); background: #fff; transition: all .2s;
+}
+.lang-option:has(input:checked) {
+  border-color: var(--gold); background: linear-gradient(135deg, #fffaf1, var(--gold-soft));
+  box-shadow: 0 8px 20px -14px rgba(154, 112, 36, .9);
+}
+.lang-option:has(input:checked) .lang-code { background: var(--gold-grad); color: #fff; border-color: transparent; }
+.lang-option:has(input:checked)::after { border: 6px solid var(--gold); }
+.lang-option:has(input:focus-visible) { outline: 2px solid var(--gold-l); outline-offset: 2px; }
+.settings-note { margin-top: 14px; font-size: 12.5px; }
+
+/* ---------- Premium ---------- */
+.premium-card {
+  position: relative; overflow: hidden; display: flex; gap: 30px; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; padding: 36px 40px; border: none; color: #f7ecdf;
+  background: linear-gradient(135deg, #3b2a24 0%, #4d342b 55%, #5e3f33 100%);
+}
+.premium-card::after {
+  content: ""; position: absolute; right: -30px; bottom: -60px; width: 260px; height: 260px;
+  background: url("img/floral.svg") no-repeat center / contain; opacity: .3; transform: scaleX(-1); pointer-events: none;
+}
+.premium-card .eyebrow { color: var(--gold-l); }
+.premium-card h2 { font-family: var(--serif); font-size: 34px; font-weight: 600; color: #fff; line-height: 1.15; margin-bottom: 6px; }
+.premium-status { color: #d9c6b4; margin-bottom: 14px; }
+.premium-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+.premium-list li { position: relative; padding-left: 22px; color: #f1e3d3; font-size: 13.5px; }
+.premium-list li::before {
+  content: ""; position: absolute; left: 0; top: 6px; width: 9px; height: 9px; transform: rotate(45deg);
+  background: var(--gold-grad);
+}
+.premium-action { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.premium-soon { font-family: var(--script); font-size: 34px; color: var(--gold-l); line-height: 1; }
+.premium-action small { color: #bfa994; font-size: 12px; max-width: 220px; }
+.premium-action .btn-gold:disabled { opacity: .75; cursor: not-allowed; }
+
+/* ---------- Mobil ---------- */
+@media (max-width: 1100px) {
+  .profile-grid { grid-template-columns: 1fr; }
+  .g-3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .premium-card { padding: 28px 22px; }
+  .premium-list { grid-template-columns: 1fr; }
+  .premium-card h2 { font-size: 28px; }
+  .form-actions .btn { width: 100%; }
+}

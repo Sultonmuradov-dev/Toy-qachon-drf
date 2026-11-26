@@ -44,8 +44,13 @@ class GuestSerializers(ModelSerializer):
 class UserSerializers(ModelSerializer):
     class Meta:
         model = User
-        fields = ['phone_number', 'first_name', 'language', 'wedding_day']
-        read_only_fields = ['phone_number']
+        fields = [
+            'phone_number', 'first_name', 'last_name', 'language', 'wedding_day',
+            'telegram_id', 'premium_status', 'date_joined',
+        ]
+        # premium faqat to'lovdan keyin backend tomonidan yoqiladi (2-bosqich)
+        read_only_fields = ['phone_number', 'premium_status', 'date_joined']
+        extra_kwargs = {'telegram_id': {'allow_null': True, 'required': False}}
 
 
 class  BudgetItemSerializers(ModelSerializer):
