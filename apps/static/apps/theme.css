@@ -1,0 +1,576 @@
+/* =========================================================
+   To'y qachon — "Oltin va Atirgul" mavzusi
+   style.css va auth.css dan KEYIN ulanadi va ularni ustidan yozadi.
+   Klass va id nomlari o'zgarmagan — JS'ga ta'sir qilmaydi.
+   ========================================================= */
+
+:root {
+  --gold: #b8892f;
+  --gold-d: #8a6420;
+  --gold-l: #e3c47e;
+  --gold-soft: #f8efdc;
+  --rose: #e9c9c3;
+  --rose-d: #b9776d;
+  --rose-soft: #f9eeeb;
+  --bg: #fbf7f2;
+  --card: #fffdfa;
+  --text: #2e2420;
+  --muted: #8a7d72;
+  --line: #ecdfcc;
+  --radius: 18px;
+  --shadow: 0 1px 2px rgba(120, 84, 40, .05), 0 10px 30px -12px rgba(120, 84, 40, .18);
+  --shadow-lg: 0 24px 50px -20px rgba(120, 84, 40, .35);
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --script: "Great Vibes", "Cormorant Garamond", cursive;
+  --gold-grad: linear-gradient(135deg, #d9b25f 0%, #b8892f 45%, #9a7024 100%);
+}
+
+body {
+  font-family: Inter, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background:
+    radial-gradient(900px 500px at -10% -10%, rgba(233, 201, 195, .45), transparent 60%),
+    radial-gradient(800px 500px at 110% 0%, rgba(227, 196, 126, .30), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* ---------- Brend ---------- */
+.brand {
+  font-family: var(--script);
+  font-weight: 400;
+  letter-spacing: .01em;
+  background: var(--gold-grad);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.brand span { color: transparent; }
+
+/* ---------- Sarlavhalar ---------- */
+.hero h1, .features h2, .steps h2, .cta h2,
+.auth-card h1, .page-head h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+/* Sarlavha ostidagi bezak (chiziq — olmos — chiziq) */
+.features h2, .steps h2 {
+  text-align: center; font-size: 40px; margin-bottom: 34px;
+}
+.features h2::after, .steps h2::after {
+  content: ""; display: block; width: 160px; height: 14px; margin: 10px auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 14'%3E%3Cg stroke='%23b8892f' stroke-width='1' fill='none'%3E%3Cpath d='M0 7h62M98 7h62'/%3E%3Cpath d='M80 1l6 6-6 6-6-6z' fill='%23e9c9c3'/%3E%3Ccircle cx='68' cy='7' r='1.6' fill='%23b8892f'/%3E%3Ccircle cx='92' cy='7' r='1.6' fill='%23b8892f'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ---------- Tugmalar ---------- */
+.btn {
+  border-radius: 999px; border-color: var(--line); background: var(--card);
+  transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+}
+.btn:hover { background: #fff; border-color: var(--gold-l); transform: translateY(-1px); }
+.btn-gold {
+  position: relative; overflow: hidden;
+  background: var(--gold-grad); border-color: transparent; color: #fff;
+  box-shadow: 0 8px 20px -8px rgba(154, 112, 36, .7);
+}
+.btn-gold:hover { background: var(--gold-grad); box-shadow: 0 12px 26px -8px rgba(154, 112, 36, .8); }
+.btn-gold::after {
+  content: ""; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
+  transform: skewX(-20deg); transition: left .6s ease;
+}
+.btn-gold:hover::after { left: 130%; }
+.btn-lg { padding: 13px 28px; }
+
+/* ---------- Kartochkalar ---------- */
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+}
+
+/* ---------- Ikonkalar ---------- */
+.stat-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, var(--rose-soft));
+  border: 1px solid var(--rose); color: var(--gold-d);
+}
+.ico { width: 22px; height: 22px; }
+
+/* ---------- Welcome: navigatsiya ---------- */
+.welcome-nav {
+  background: rgba(255, 253, 250, .75);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(236, 223, 204, .7);
+}
+.welcome-nav .brand { font-size: 36px; line-height: 1; }
+
+/* ---------- Welcome: hero ---------- */
+.hero { position: relative; padding-top: 80px; padding-bottom: 70px; }
+.hero::before {               /* chap pastdagi gul shoxchasi */
+  content: ""; position: absolute; left: -170px; bottom: -200px; width: 240px; height: 240px; z-index: -1;
+  background: url("img/floral.svg") no-repeat center / contain; opacity: .55; pointer-events: none;
+}
+.eyebrow {
+  color: var(--rose-d); font-weight: 600; letter-spacing: .18em;
+}
+.hero h1 { font-size: 60px; line-height: 1.08; }
+.hero h1 span {
+  font-family: var(--script); font-weight: 400; font-size: 1.25em;
+  background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  padding-right: 6px;
+}
+.hero-sub { font-size: 17px; color: #6b5e55; }
+
+.hero-card {
+  position: relative; padding: 34px 32px 30px; gap: 20px;
+  box-shadow: var(--shadow-lg);
+}
+.hero-card::before {          /* ichki ingichka oltin ramka */
+  content: ""; position: absolute; inset: 8px; border-radius: 13px;
+  border: 1px solid var(--gold-l); opacity: .55; pointer-events: none;
+}
+.hero-card::after {           /* o'ng yuqori burchakdagi gul */
+  content: ""; position: absolute; right: -46px; top: -54px; width: 150px; height: 150px;
+  background: url("img/floral.svg") no-repeat center / contain;
+  transform: scaleX(-1) rotate(-10deg); opacity: .9; pointer-events: none;
+}
+.hero-card-head {
+  font-family: var(--script); font-size: 30px; color: var(--gold-d); line-height: 1;
+  text-align: center; margin-bottom: 4px;
+}
+.hero-stat + .hero-stat { padding-top: 18px; border-top: 1px dashed var(--line); }
+.hero-stat b { font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: 1.1; }
+.hero-stat:first-of-type b { font-size: 34px; color: var(--gold-d); }
+
+/* ---------- Welcome: imkoniyatlar ---------- */
+.features, .steps { padding-top: 60px; }
+.feature {
+  padding: 26px 22px; text-align: center;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.feature .stat-icon { margin: 0 auto 14px; width: 58px; height: 58px; }
+.feature .ico { width: 26px; height: 26px; }
+.feature h3 { font-family: var(--serif); font-size: 22px; font-weight: 600; }
+.feature p { font-size: 13.5px; line-height: 1.6; }
+.feature:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--gold-l); }
+
+/* ---------- Welcome: qadamlar ---------- */
+.steps-grid { position: relative; }
+.step {
+  text-align: center; padding: 26px 22px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.step-num {
+  width: 52px; height: 52px; margin: 0 auto 14px;
+  background: var(--gold-grad); font-family: var(--serif); font-size: 24px; font-weight: 600;
+  box-shadow: 0 0 0 5px var(--gold-soft), 0 0 0 6px var(--gold-l);
+}
+.step h3 { font-family: var(--serif); font-size: 22px; }
+
+/* ---------- Welcome: CTA ---------- */
+.cta {
+  position: relative; overflow: hidden; margin-top: 70px;
+  background: linear-gradient(135deg, #3b2a24 0%, #4d342b 55%, #5e3f33 100%);
+  border: none; color: #f7ecdf; padding: 44px 48px;
+}
+.cta::after {
+  content: ""; position: absolute; right: -30px; bottom: -50px; width: 240px; height: 240px;
+  background: url("img/floral.svg") no-repeat center / contain; opacity: .35; transform: scaleX(-1);
+  pointer-events: none;
+}
+.cta h2 { font-size: 34px; color: #fff; }
+.cta .muted { color: #d9c6b4; }
+.cta .btn-gold { position: relative; z-index: 1; }
+
+.welcome-footer { padding: 34px; }
+
+/* ---------- Login / Register ---------- */
+.auth-body {
+  background:
+    radial-gradient(700px 400px at 50% -5%, rgba(227, 196, 126, .35), transparent 70%),
+    radial-gradient(600px 400px at 0% 100%, rgba(233, 201, 195, .45), transparent 70%),
+    var(--bg);
+  position: relative; overflow-x: hidden;
+}
+.auth-body::before, .auth-body::after {
+  content: ""; position: fixed; width: 300px; height: 300px; pointer-events: none;
+  background: url("img/floral.svg") no-repeat center / contain; opacity: .6;
+}
+.auth-body::before { left: -30px; bottom: -30px; }
+.auth-body::after  { right: -30px; top: -30px; transform: rotate(180deg); }
+
+.auth-wrap { position: relative; z-index: 1; max-width: 440px; }
+.auth-brand { font-size: 48px; padding-bottom: 14px; line-height: 1.1; }
+.auth-card { position: relative; padding: 40px 38px 34px; box-shadow: var(--shadow-lg); text-align: center; }
+.auth-card::before {
+  content: ""; position: absolute; inset: 8px; border-radius: 13px;
+  border: 1px solid var(--gold-l); opacity: .5; pointer-events: none;
+}
+.auth-card h1 { font-size: 34px; }
+.auth-card h1::after {
+  content: ""; display: block; width: 120px; height: 12px; margin: 8px auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 14'%3E%3Cg stroke='%23b8892f' stroke-width='1' fill='none'%3E%3Cpath d='M0 7h62M98 7h62'/%3E%3Cpath d='M80 1l6 6-6 6-6-6z' fill='%23e9c9c3'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+.auth-form { text-align: left; }
+.auth-form label { color: #6b5e55; font-weight: 500; }
+.auth-form .input, .auth-form .select {
+  padding: 13px 16px; border-radius: 12px; background: #fff;
+  transition: border-color .2s, box-shadow .2s;
+}
+.input:focus, .select:focus {
+  border-color: var(--gold); box-shadow: 0 0 0 4px rgba(227, 196, 126, .28);
+}
+.auth-form .btn { margin-top: 6px; }
+.auth-switch a, .auth-back:hover { color: var(--gold-d); }
+
+/* ---------- Kirish animatsiyalari ---------- */
+@keyframes riseIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.hero-text, .hero-card, .feature, .step, .auth-wrap { animation: riseIn .7s cubic-bezier(.2, .7, .2, 1) both; }
+.hero-card { animation-delay: .15s; }
+.feature:nth-child(2), .step:nth-child(2) { animation-delay: .1s; }
+.feature:nth-child(3), .step:nth-child(3) { animation-delay: .2s; }
+.feature:nth-child(4) { animation-delay: .3s; }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 900px) {
+  .hero h1 { font-size: 44px; }
+  .hero::before { display: none; }
+  .hero-card::after { right: -20px; top: -40px; width: 110px; height: 110px; }
+  .features h2, .steps h2 { font-size: 32px; }
+}
+@media (max-width: 560px) {
+  .hero h1 { font-size: 36px; }
+  .welcome-nav .brand { font-size: 30px; }
+  .cta { padding: 30px 24px; }
+  .auth-card { padding: 32px 24px 28px; }
+  .auth-body::after { display: none; }
+}
+
+/* =========================================================
+   ICHKI SAHIFALAR (dashboard, mehmonlar, byudjet, vazifalar, vendorlar)
+   ========================================================= */
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  background: linear-gradient(180deg, #fffdfa 0%, #fbf4ec 100%);
+  border-right: 1px solid var(--line);
+  padding: 22px 14px;
+  overflow: hidden;
+}
+.sidebar::after {            /* pastki burchakdagi gul */
+  content: ""; position: absolute; left: -50px; bottom: -40px; width: 200px; height: 200px;
+  background: url("img/floral.svg") no-repeat center / contain; opacity: .35; pointer-events: none;
+}
+.sidebar > * { position: relative; z-index: 1; }
+.sidebar .brand { font-size: 40px; line-height: 1.1; padding: 2px 0 6px; }
+.sidebar .brand::after {
+  content: ""; display: block; width: 110px; height: 12px; margin: 6px auto 8px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 14'%3E%3Cg stroke='%23b8892f' stroke-width='1' fill='none'%3E%3Cpath d='M0 7h62M98 7h62'/%3E%3Cpath d='M80 1l6 6-6 6-6-6z' fill='%23e9c9c3'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+.nav-title { color: var(--rose-d); letter-spacing: .16em; font-size: 10.5px; padding-top: 20px; }
+.nav-link {
+  gap: 12px; padding: 10px 14px; border-radius: 12px; color: #5c4f46; font-weight: 500;
+  transition: background .2s, color .2s, transform .2s;
+}
+.nav-link .ico { width: 19px; height: 19px; color: var(--gold); flex-shrink: 0; }
+.nav-link:hover { background: var(--rose-soft); transform: translateX(2px); }
+.nav-link.active {
+  background: var(--gold-grad); color: #fff; font-weight: 600;
+  box-shadow: 0 8px 18px -10px rgba(154, 112, 36, .9);
+}
+.nav-link.active .ico { color: #fff; }
+.sidebar-footer .btn { padding: 11px 16px; }
+
+/* ---------- Raqamlar: serif shriftda ham oddiy (lining) raqamlar ---------- */
+.stat-value, .mini b, .bar-top b, .hero-stat b, .step-num, .wedding-info b { font-variant-numeric: lining-nums tabular-nums; }
+
+/* ---------- Topbar ---------- */
+/* Menyu tugmasi faqat mobil uchun (style.css'da .btn uni ko'rsatib qo'yardi) */
+.btn.menu-btn { display: none; }
+@media (max-width: 900px) { .btn.menu-btn { display: inline-flex; } }
+
+.topbar {
+  padding: 10px 14px; margin-bottom: 28px; border-radius: 999px;
+  background: rgba(255, 253, 250, .7); border: 1px solid rgba(236, 223, 204, .8);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  position: sticky; top: 12px; z-index: 30;
+}
+.bell {
+  width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--card); border: 1px solid var(--line); color: var(--gold-d);
+  transition: border-color .2s;
+}
+.bell:hover { border-color: var(--gold-l); }
+.bell .ico { width: 18px; height: 18px; }
+.user-chip { background: var(--card); border-color: var(--line); }
+.user-chip::before { background: var(--gold-grad); box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--rose); }
+.menu-btn .ico { width: 20px; height: 20px; }
+#logoutBtn { color: var(--muted); }
+#logoutBtn:hover { color: var(--rose-d); background: var(--rose-soft); border-color: transparent; }
+
+/* ---------- Sahifa sarlavhasi ---------- */
+.page-head { margin-bottom: 26px; }
+.page-head h1 { font-size: 46px; line-height: 1.05; }
+.page-head .eyebrow { margin-bottom: 6px; }
+
+/* ---------- Kartochka sarlavhasi ---------- */
+.card { padding: 24px; }
+.card-head h2 {
+  font-family: var(--serif); font-size: 24px; font-weight: 600; letter-spacing: -.005em;
+}
+
+/* ---------- Statistika kartochkalari ---------- */
+.stat { position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s, border-color .25s; }
+.stat:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--gold-l); }
+.stat .stat-icon { width: 46px; height: 46px; margin-bottom: 12px; }
+.stat-value { font-family: var(--serif); font-size: clamp(26px, 2.3vw, 36px); font-weight: 600; line-height: 1.1; color: var(--text); }
+.stat-label { font-weight: 500; color: #6b5e55; }
+.grid.g-4 > .stat:nth-child(1) .stat-value { color: var(--gold-d); }
+
+/* ---------- Progress ---------- */
+.progress { height: 10px; background: #f3eadf; box-shadow: inset 0 1px 2px rgba(120, 84, 40, .08); }
+.progress > span { background: var(--gold-grad); }
+.progress.green > span { background: linear-gradient(90deg, #7fb48f, #4f9670); }
+.progress.red > span { background: linear-gradient(90deg, #e39a8f, #c4564a); }
+.bar-top b { font-family: var(--serif); font-size: 20px; }
+
+.mini { background: linear-gradient(135deg, var(--rose-soft), #fdf7ef); border: 1px solid #f1e2da; border-radius: 14px; }
+.mini b { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--gold-d); }
+
+/* ---------- Ogohlantirishlar ---------- */
+.alert-item { border-radius: 12px; padding: 12px 16px; font-weight: 500; }
+
+/* ---------- To'y kartasi (dashboard) ---------- */
+.wedding {
+  background: linear-gradient(135deg, #fdf6ec, var(--rose-soft)); border: 1px solid #f0e0d4;
+  padding: 16px; border-radius: 16px;
+}
+.wedding-icon {
+  border-radius: 50%; background: #fff; border-color: var(--rose);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, .7);
+}
+.wedding-info b { font-family: var(--serif); font-size: 20px; }
+
+/* ---------- Tezkor amallar ---------- */
+.quick {
+  border: 1px dashed var(--gold-l); border-radius: 14px; padding: 18px 14px;
+  background: var(--card); color: var(--gold-d); font-weight: 600;
+  transition: transform .2s, background .2s, border-color .2s;
+}
+.quick:hover { background: var(--gold-soft); border-style: solid; border-color: var(--gold); transform: translateY(-2px); }
+
+/* ---------- Tablar va filtrlar ---------- */
+.tab { padding: 7px 16px; background: var(--card); border-color: var(--line); transition: all .2s; }
+.tab:hover { border-color: var(--gold-l); }
+.tab.active { background: var(--gold-grad); color: #fff; border-color: transparent; box-shadow: 0 6px 14px -8px rgba(154, 112, 36, .9); }
+.input, .select { border-radius: 12px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+.toolbar .input { min-width: 220px; }
+
+/* ---------- Jadval ---------- */
+.table-wrap { border-radius: 14px; }
+th {
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--rose-d); background: #fcf6f0; border-bottom: 1px solid var(--line); padding: 12px;
+}
+th:first-child { border-top-left-radius: 12px; }
+th:last-child { border-top-right-radius: 12px; }
+td { padding: 14px 12px; border-bottom: 1px solid #f4ece2; }
+tbody tr { transition: background .15s; }
+tbody tr:hover { background: #fdf8f2; }
+.avatar { background: linear-gradient(135deg, var(--rose-soft), var(--gold-soft)); color: var(--gold-d); border: 1px solid var(--rose); font-size: 12px; }
+.status-select { border-radius: 999px; padding: 5px 10px; background: var(--card); }
+
+/* ---------- Belgilar (badge) ---------- */
+.badge { padding: 4px 12px; font-weight: 600; letter-spacing: .01em; }
+.badge.green { background: #e8f3ec; color: #3e8560; }
+.badge.red   { background: #fbe9e6; color: #b5483c; }
+.badge.amber { background: #fbf0d9; color: #996a12; }
+.badge.blue  { background: #ebf0f8; color: #4a6c9b; }
+
+/* ---------- Vazifalar ---------- */
+.task-row { padding: 14px 8px; border-bottom: 1px solid #f4ece2; border-radius: 10px; transition: background .15s; }
+.task-row:hover { background: #fdf8f2; }
+.task-row input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--gold); }
+.task-title { font-weight: 600; }
+
+/* ---------- Vendorlar ---------- */
+.vendor { padding: 14px; transition: transform .25s, box-shadow .25s, border-color .25s; }
+.vendor:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--gold-l); }
+.vendor-cover { height: 190px; border-radius: 12px; }
+.vendor-cover-empty { background: linear-gradient(135deg, var(--rose-soft), var(--gold-soft)); font-size: 48px; }
+.vendor-name { font-family: var(--serif); font-size: 22px; font-weight: 600; }
+
+/* ---------- Modal ---------- */
+.modal { background: rgba(46, 36, 32, .45); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.modal.open .modal-box { animation: riseIn .3s cubic-bezier(.2, .7, .2, 1) both; }
+.modal-box { position: relative; border-radius: 20px; padding: 30px; background: var(--card); box-shadow: 0 30px 60px -20px rgba(46, 36, 32, .45); }
+.modal-box::before {
+  content: ""; position: absolute; inset: 7px; border-radius: 15px;
+  border: 1px solid var(--gold-l); opacity: .45; pointer-events: none;
+}
+.modal-box h3 { font-family: var(--serif); font-size: 28px; font-weight: 600; text-align: center; }
+.modal-box .input, .modal-box .select { border-radius: 12px; }
+.modal-box .input:focus, .modal-box .select:focus { box-shadow: 0 0 0 4px rgba(227, 196, 126, .28); }
+
+/* ---------- Toast ---------- */
+.toast { background: #3b2a24; border-left: 3px solid var(--gold-l); border-radius: 12px; }
+.toast.error { background: #8f3b32; border-left-color: #f0b4aa; }
+
+/* ---------- Animatsiya ---------- */
+.main > .page-head, .main > section { animation: riseIn .6s cubic-bezier(.2, .7, .2, 1) both; }
+.main > section:nth-of-type(2) { animation-delay: .06s; }
+.main > section:nth-of-type(3) { animation-delay: .12s; }
+.main > section:nth-of-type(4) { animation-delay: .18s; }
+.main > section:nth-of-type(5) { animation-delay: .24s; }
+
+/* ---------- Mobil ---------- */
+@media (max-width: 900px) {
+  .topbar { top: 8px; border-radius: 16px; }
+  .page-head h1 { font-size: 36px; }
+  .sidebar.open { box-shadow: 20px 0 40px -20px rgba(46, 36, 32, .3); }
+}
+@media (max-width: 560px) {
+  .page-head h1 { font-size: 32px; }
+  .stat-value { font-size: 30px; }
+  .toolbar .input { min-width: 0; width: 100%; }
+}
+
+/* =========================================================
+   PROFIL VA SOZLAMALAR
+   ========================================================= */
+.g-3 { grid-template-columns: repeat(3, 1fr); }
+.profile-grid { grid-template-columns: minmax(280px, 1fr) 1.7fr; align-items: start; }
+
+/* ---------- Profil kartasi ---------- */
+.profile-card { position: relative; overflow: hidden; text-align: center; padding: 34px 26px 26px; }
+.profile-card::before {      /* tepadagi oltin-atirgul fon */
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 96px;
+  background: linear-gradient(135deg, #f3dfb0 0%, var(--rose) 100%); opacity: .55;
+}
+.profile-card::after {
+  content: ""; position: absolute; right: -34px; top: -40px; width: 140px; height: 140px;
+  background: url("img/floral.svg") no-repeat center / contain; transform: scaleX(-1); opacity: .8;
+  pointer-events: none;
+}
+.profile-card > * { position: relative; z-index: 1; }
+.profile-avatar {
+  width: 96px; height: 96px; margin: 8px auto 14px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--gold-grad); color: #fff;
+  font-family: var(--serif); font-size: 36px; font-weight: 600; letter-spacing: .02em;
+  box-shadow: 0 0 0 5px #fff, 0 0 0 6px var(--gold-l), 0 14px 30px -12px rgba(154, 112, 36, .8);
+}
+.profile-name { font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1.15; }
+.profile-badges { margin: 12px 0 4px; }
+.profile-badges .badge:not(.amber) { background: var(--gold-soft); color: var(--gold-d); border-color: transparent; }
+
+.profile-countdown {
+  margin: 20px 0 18px; padding: 18px 12px; border-radius: 16px;
+  background: linear-gradient(135deg, #fdf6ec, var(--rose-soft)); border: 1px solid #f0e0d4;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.countdown-num {
+  font-family: var(--serif); font-size: 52px; font-weight: 600; line-height: 1;
+  font-variant-numeric: lining-nums;
+  background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.countdown-label { font-family: var(--script); font-size: 24px; color: var(--rose-d); line-height: 1.2; }
+
+.profile-meta { list-style: none; text-align: left; }
+.profile-meta li {
+  display: flex; justify-content: space-between; gap: 12px; padding: 11px 2px;
+  border-top: 1px dashed var(--line); font-size: 13.5px;
+}
+.profile-meta span { color: var(--muted); }
+.profile-meta b { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ---------- Formalar ---------- */
+.settings-form { display: flex; flex-direction: column; gap: 14px; }
+.settings-form label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 500; color: #6b5e55; }
+.settings-form .input { width: 100%; padding: 12px 14px; }
+.settings-form .input:disabled { background: #f7f1ea; color: var(--muted); cursor: not-allowed; }
+.settings-form small { font-size: 12px; font-weight: 400; }
+.hint { font-style: normal; font-weight: 500; font-size: 11px; color: var(--rose-d); background: var(--rose-soft); padding: 1px 8px; border-radius: 999px; margin-left: 4px; }
+.form-actions { display: flex; justify-content: flex-end; }
+
+/* ---------- Tayyorgarlik holati ---------- */
+.summary {
+  display: block; padding: 18px; border-radius: 14px; border: 1px solid var(--line); background: #fff;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.summary:hover { transform: translateY(-3px); border-color: var(--gold-l); box-shadow: var(--shadow); }
+.summary .bar-top span { font-weight: 500; }
+.summary .progress { margin-bottom: 8px; }
+
+/* ---------- Til tanlash ---------- */
+.lang-options { display: flex; flex-direction: column; gap: 10px; }
+.lang-option {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 14px; background: #fff;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.lang-option:hover { border-color: var(--gold-l); }
+.lang-option input { position: absolute; opacity: 0; pointer-events: none; }
+.lang-code {
+  width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0;
+  background: var(--rose-soft); border: 1px solid var(--rose); color: var(--gold-d);
+  font-weight: 700; font-size: 13px; letter-spacing: .04em;
+}
+.lang-text { display: flex; flex-direction: column; flex: 1; }
+.lang-text b { font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.2; }
+.lang-text small { color: var(--muted); font-size: 12.5px; }
+.lang-option::after {        /* o'ngdagi belgi doirasi */
+  content: ""; width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  border: 1.5px solid var(--line); background: #fff; transition: all .2s;
+}
+.lang-option:has(input:checked) {
+  border-color: var(--gold); background: linear-gradient(135deg, #fffaf1, var(--gold-soft));
+  box-shadow: 0 8px 20px -14px rgba(154, 112, 36, .9);
+}
+.lang-option:has(input:checked) .lang-code { background: var(--gold-grad); color: #fff; border-color: transparent; }
+.lang-option:has(input:checked)::after { border: 6px solid var(--gold); }
+.lang-option:has(input:focus-visible) { outline: 2px solid var(--gold-l); outline-offset: 2px; }
+.settings-note { margin-top: 14px; font-size: 12.5px; }
+
+/* ---------- Premium ---------- */
+.premium-card {
+  position: relative; overflow: hidden; display: flex; gap: 30px; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; padding: 36px 40px; border: none; color: #f7ecdf;
+  background: linear-gradient(135deg, #3b2a24 0%, #4d342b 55%, #5e3f33 100%);
+}
+.premium-card::after {
+  content: ""; position: absolute; right: -30px; bottom: -60px; width: 260px; height: 260px;
+  background: url("img/floral.svg") no-repeat center / contain; opacity: .3; transform: scaleX(-1); pointer-events: none;
+}
+.premium-card .eyebrow { color: var(--gold-l); }
+.premium-card h2 { font-family: var(--serif); font-size: 34px; font-weight: 600; color: #fff; line-height: 1.15; margin-bottom: 6px; }
+.premium-status { color: #d9c6b4; margin-bottom: 14px; }
+.premium-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+.premium-list li { position: relative; padding-left: 22px; color: #f1e3d3; font-size: 13.5px; }
+.premium-list li::before {
+  content: ""; position: absolute; left: 0; top: 6px; width: 9px; height: 9px; transform: rotate(45deg);
+  background: var(--gold-grad);
+}
+.premium-action { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.premium-soon { font-family: var(--script); font-size: 34px; color: var(--gold-l); line-height: 1; }
+.premium-action small { color: #bfa994; font-size: 12px; max-width: 220px; }
+.premium-action .btn-gold:disabled { opacity: .75; cursor: not-allowed; }
+
+/* ---------- Mobil ---------- */
+@media (max-width: 1100px) {
+  .profile-grid { grid-template-columns: 1fr; }
+  .g-3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .premium-card { padding: 28px 22px; }
+  .premium-list { grid-template-columns: 1fr; }
+  .premium-card h2 { font-size: 28px; }
+  .form-actions .btn { width: 100%; }
+}
+
+/* Admin tugmasi (vendorlar sahifasi) */
+.sidebar-footer .admin-only { margin-bottom: 8px; border-style: dashed; color: var(--gold-d); }
+.sidebar-footer .admin-only[hidden] { display: none; }

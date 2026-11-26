@@ -1,10 +1,151 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil — To'y Rejalashtiruvchi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="{% static 'apps/style.css' %}">
+  <link rel="stylesheet" href="{% static 'apps/auth.css' %}">
+  <link rel="stylesheet" href="{% static 'apps/theme.css' %}">
 </head>
-<body>
-$END$
+<body data-protected="true">
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">To’y <span>qachon</span></div>
+
+    <a class="nav-link" data-nav href="{% url 'index' %}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg><span>Bosh sahifa</span></a>
+
+    <div class="nav-title">Boshqaruv</div>
+    <a class="nav-link" data-nav href="{% url 'guests' %}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Mehmonlar</span></a>
+    <a class="nav-link" data-nav href="{% url 'budget' %}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg><span>Byudjet</span></a>
+    <a class="nav-link" data-nav href="{% url 'tasks' %}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg><span>Vazifalar</span></a>
+
+    <div class="nav-title">Katalog</div>
+    <a class="nav-link" data-nav href="{% url 'vendors' %}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M12 2 20 7H4z"/></svg><span>Vendorlar</span></a>
+
+    <div class="nav-title">Hisob</div>
+    <a class="nav-link" data-nav href="{% url 'profile' %}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Profil</span></a>
+    <a class="nav-link" data-nav href="{% url 'settings' %}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg><span>Sozlamalar</span></a>
+
+    <div class="sidebar-footer">
+      <a class="btn btn-gold btn-block" href="{% url 'guests' %}">+ Tez qo'shish</a>
+    </div>
+  </aside>
+
+  <div class="backdrop" id="backdrop"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="btn btn-ghost menu-btn" id="menuBtn" aria-label="Menyu"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="topbar-right">
+        <span class="bell" aria-label="Bildirishnomalar"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
+        <a class="user-chip" id="userChip" href="{% url 'profile' %}">Yuklanmoqda...</a>
+        <button class="btn btn-ghost" id="logoutBtn">Chiqish</button>
+      </div>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">Hisob</p>
+        <h1>Mening profilim</h1>
+      </div>
+    </div>
+
+    <section class="grid profile-grid">
+      <div class="card profile-card">
+        <div class="profile-avatar" id="pAvatar">—</div>
+        <h2 class="profile-name" id="pName">Yuklanmoqda...</h2>
+        <p class="muted" id="pPhone"></p>
+        <div class="profile-badges"><span class="badge" id="pPlan">Bepul tarif</span></div>
+
+        <div class="profile-countdown">
+          <span class="countdown-num" id="pDays">—</span>
+          <span class="countdown-label" id="pDaysLabel">To'y sanasi hali kiritilmagan</span>
+        </div>
+
+        <ul class="profile-meta">
+          <li><span>To'y sanasi</span><b id="pWedding">—</b></li>
+          <li><span>A'zo bo'lgan</span><b id="pJoined">—</b></li>
+          <li><span>Telegram</span><b id="pTg">Ulanmagan</b></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>Shaxsiy ma'lumotlar</h2>
+            <p class="muted">Ismingiz va to'y sanangizni shu yerda yangilang</p>
+          </div>
+        </div>
+
+        <form id="profileForm" class="settings-form">
+          <div class="form-grid">
+            <label>Ism
+              <input class="input" name="first_name" maxlength="150" placeholder="Masalan: Yodgor">
+            </label>
+            <label>Familiya
+              <input class="input" name="last_name" maxlength="150" placeholder="Masalan: Sultonmuradov">
+            </label>
+            <label>Telefon raqam
+              <input class="input" id="pPhoneInput" disabled>
+            </label>
+            <label>To'y sanasi
+              <input class="input" type="date" name="wedding_day">
+            </label>
+            <label class="full">
+              <span>Telegram ID <em class="hint">ixtiyoriy</em></span>
+              <input class="input" name="telegram_id" inputmode="numeric" maxlength="15" placeholder="Masalan: 123456789">
+              <small class="muted">Kelajakda Telegram bot bilan bog'lash uchun. O'z ID'ingizni @userinfobot orqali bilib olishingiz mumkin.</small>
+            </label>
+          </div>
+
+          <div class="auth-error" id="profileError"></div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-gold" id="profileSave">Saqlash</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="card mt">
+      <div class="card-head">
+        <div>
+          <h2>Tayyorgarlik holati</h2>
+          <p class="muted">To'yga tayyorgarlik qanchalik oldinga siljiganini ko'ring</p>
+        </div>
+      </div>
+      <div class="grid g-3">
+        <a class="summary" href="{% url 'guests' %}">
+          <div class="bar-top"><span>Mehmonlar tasdiqladi</span><b id="sumGuestsPct">0%</b></div>
+          <div class="progress green"><span id="sumGuestsBar" style="width:0%"></span></div>
+          <small class="muted" id="sumGuestsSub">—</small>
+        </a>
+        <a class="summary" href="{% url 'budget' %}">
+          <div class="bar-top"><span>Byudjet sarfi</span><b id="sumBudgetPct">0%</b></div>
+          <div class="progress"><span id="sumBudgetBar" style="width:0%"></span></div>
+          <small class="muted" id="sumBudgetSub">—</small>
+        </a>
+        <a class="summary" href="{% url 'tasks' %}">
+          <div class="bar-top"><span>Vazifalar bajarildi</span><b id="sumTasksPct">0%</b></div>
+          <div class="progress green"><span id="sumTasksBar" style="width:0%"></span></div>
+          <small class="muted" id="sumTasksSub">—</small>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="{% static 'apps/style.js' %}"></script>
+<script src="{% static 'apps/auth.js' %}"></script>
+<script src="{% static 'apps/profile.js' %}"></script>
 </body>
 </html>

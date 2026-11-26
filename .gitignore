@@ -6,3 +6,7 @@
 /.idea/dataSources/d9700e67-d010-468e-be1f-08334047c9cc/storage_v2/_src_/schema/main.uQUzAA.meta
 /.toy-rejalashtiruvchi-web-tz.md
 /.tz.txt
+/.env
+/static/
+__pycache__/
+*.pyc
