@@ -211,7 +211,7 @@ tid('taskSearch').addEventListener('input', render);
 
 tid('addTaskBtn').addEventListener('click', () => openTaskModal());
 tid('quickAddBtn').addEventListener('click', () => openTaskModal());
-tid('generateBtn').addEventListener('click', generateTasks);
+tid('generateBtn')?.addEventListener('click', generateTasks);
 tid('cancelTaskBtn').addEventListener('click', closeTaskModal);
 tid('taskModal').addEventListener('click', e => {
   if (e.target === tid('taskModal')) closeTaskModal();
