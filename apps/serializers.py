@@ -1,7 +1,8 @@
 import re
 from django.contrib.auth import get_user_model
-from rest_framework.serializers import CharField, Serializer, ValidationError, ModelSerializer
-from apps.models import Guests , BudgetItem , Task , VendorImage , Vendor
+from rest_framework.serializers import CharField, Serializer, ValidationError, ModelSerializer , SerializerMethodField
+from apps.models import Guests , BudgetItem , Task , VendorImage , Vendor, Review
+from apps.plan import PLAN_LABELS
 User = get_user_model()
 
 
@@ -42,16 +43,21 @@ class GuestSerializers(ModelSerializer):
 
 
 class UserSerializers(ModelSerializer):
+    plan = CharField(source='active_plan', read_only=True)
+    plan_label = SerializerMethodField()
+
     class Meta:
         model = User
         fields = [
-            'phone_number', 'first_name', 'last_name', 'language', 'wedding_day',
-            'telegram_id', 'premium_status', 'date_joined', 'is_staff',
+            'phone_number', 'first_name', 'last_name', 'language', 'wedding_day', 'telegram_id',
+            'plan', 'plan_label', 'plan_expires_at', 'date_joined', 'is_staff',
         ]
-        # premium faqat to'lovdan keyin backend tomonidan yoqiladi (2-bosqich)
-        read_only_fields = ['phone_number', 'premium_status', 'date_joined', 'is_staff']
+        # tarif (plan) faqat admin yoki to'lov orqali o'zgaradi
+        read_only_fields = ['phone_number', 'plan_expires_at', 'date_joined', 'is_staff']
         extra_kwargs = {'telegram_id': {'allow_null': True, 'required': False}}
 
+    def get_plan_label(self, obj):
+        return PLAN_LABELS[obj.active_plan]
 
 class  BudgetItemSerializers(ModelSerializer):
     class Meta:
@@ -66,14 +72,22 @@ class TaskModelSerializers(ModelSerializer):
 
 
 class VendorImageSerializer(ModelSerializer):
+    image = SerializerMethodField()
+
     class Meta:
         model = VendorImage
         fields = ['id', 'image']
+
+    def get_image(self, obj):
+        return obj.image.url if obj.image else None
 
 
 class VendorSerializer(ModelSerializer):
     images = VendorImageSerializer(many=True, read_only=True)
     category_label = CharField(source='get_category_display', read_only=True)
+    cover_image = SerializerMethodField()
+    review_count = SerializerMethodField()
+    has_reviewed = SerializerMethodField()
 
     class Meta:
         model = Vendor
@@ -81,7 +95,32 @@ class VendorSerializer(ModelSerializer):
             'id', 'name', 'category', 'category_label', 'description',
             'city', 'address', 'phone_number', 'instagram_url',
             'price_min', 'price_max', 'rating', 'cover_image', 'images',
+            'review_count', 'has_reviewed',
         ]
+
+    def get_cover_image(self, obj):
+        return obj.cover_image.url if obj.cover_image else None
+
+    def get_review_count(self, obj):
+        return obj.reviews.count()
+
+    def get_has_reviewed(self, obj):
+        request = self.context.get('request')
+        if not request or not request.user.is_authenticated:
+            return False
+        return obj.reviews.filter(user=request.user).exists()
+
+
+class ReviewSerializer(ModelSerializer):
+    user_name = SerializerMethodField()
+
+    class Meta:
+        model = Review
+        fields = ['id', 'stars', 'comment', 'created_at', 'user_name']
+        read_only_fields = ['created_at']
+
+    def get_user_name(self, obj):
+        return obj.user.first_name or 'Foydalanuvchi'
 
 
 class ChangePasswordSerializer(Serializer):

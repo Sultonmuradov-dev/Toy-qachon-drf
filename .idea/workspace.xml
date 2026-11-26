@@ -5,24 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d494d5e-7612-4879-b2eb-74a7b51c8b90" name="Changes" comment="new message">
-      <change beforePath="$PROJECT_DIR$/.idea/Toy qachon_DRF.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Toy qachon_DRF.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/plan.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/static/apps/plans.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/static/apps/settings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/static/img/click.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/static/img/payme.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/plans.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/migrations/0002_alter_user_managers_guests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/static/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/static/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/apps/auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/apps/auth.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/apps/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/apps/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/apps/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/apps/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/apps/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/apps/style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/apps/vendors.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/apps/vendors.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/root/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/root/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/root/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/root/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/guests.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tz.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tz.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/budget.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/budget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/guests.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/guests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/pricing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tasks.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tasks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vendors.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vendors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/welcome.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,61 +83,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="2.1889512092425504E-192" />
-      <entry key="MS500" value="5.269022609374665E-39" />
-      <entry key="S2" value="5.801931219695895E-10" />
-      <entry key="S5" value="5.176125191372191E-4" />
-      <entry key="S10" value="0.062195097464821866" />
-      <entry key="S30" value="2.429946441050709" />
-      <entry key="S60" value="7.057364336033757" />
-      <entry key="M2" value="13.466408589468013" />
-      <entry key="M5" value="29.384593432305067" />
-      <entry key="M10" value="50.967649426521994" />
-      <entry key="M15" value="66.84241676037342" />
-      <entry key="M30" value="104.2073570048765" />
-      <entry key="H1" value="181.3646880553134" />
-      <entry key="H2" value="353.65700955847876" />
-      <entry key="H4" value="637.770253080289" />
-      <entry key="D1" value="1287.7742249414082" />
-      <entry key="W1" value="1486.0697550906239" />
+      <entry key="MS100" value="1.4817439915041897" />
+      <entry key="MS500" value="2.773284151670933" />
+      <entry key="S2" value="4.962029097984333" />
+      <entry key="S5" value="8.713617888459543" />
+      <entry key="S10" value="11.853888575572023" />
+      <entry key="S30" value="16.164392731172818" />
+      <entry key="S60" value="19.525794650556662" />
+      <entry key="M2" value="23.712935026596906" />
+      <entry key="M5" value="28.70511879431978" />
+      <entry key="M10" value="33.010534903666866" />
+      <entry key="M15" value="37.236495753819796" />
+      <entry key="M30" value="60.21589868759952" />
+      <entry key="H1" value="141.40870644836988" />
+      <entry key="H2" value="337.99803587158067" />
+      <entry key="H4" value="701.7037372330085" />
+      <entry key="D1" value="1805.9965635723645" />
+      <entry key="W1" value="2217.6670920755964" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000000248481" />
-      <entry key="S5" value="1.0000802867460123" />
-      <entry key="S10" value="1.013583813448343" />
-      <entry key="S30" value="1.5350702701549563" />
-      <entry key="S60" value="2.4742522737803574" />
-      <entry key="M2" value="3.676659281069091" />
-      <entry key="M5" value="6.5533200227282835" />
-      <entry key="M10" value="10.34660662007132" />
-      <entry key="M15" value="12.77216931461733" />
-      <entry key="M30" value="17.909700890693987" />
-      <entry key="H1" value="31.30527210287188" />
-      <entry key="H2" value="69.05986776738932" />
-      <entry key="H4" value="138.89196206447275" />
-      <entry key="D1" value="310.694820345117" />
-      <entry key="W1" value="364.85095352219093" />
+      <entry key="MS100" value="4.159200267005873E-107" />
+      <entry key="MS500" value="5.294219782051235E-22" />
+      <entry key="S2" value="4.7967876346113666E-6" />
+      <entry key="S5" value="0.0074542546010768875" />
+      <entry key="S10" value="0.08711712822150369" />
+      <entry key="S30" value="0.6332596200662355" />
+      <entry key="S60" value="1.5749326984446683" />
+      <entry key="M2" value="2.90575199365231" />
+      <entry key="M5" value="4.526694060465486" />
+      <entry key="M10" value="6.158638341845406" />
+      <entry key="M15" value="8.036748191423024" />
+      <entry key="M30" value="15.532757691492229" />
+      <entry key="H1" value="32.31271391788824" />
+      <entry key="H2" value="63.55700525676255" />
+      <entry key="H4" value="126.61621180971203" />
+      <entry key="D1" value="362.4203254428058" />
+      <entry key="W1" value="458.85327959097845" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.4335979449676677E-5" />
-      <entry key="MS500" value="0.10746956078037578" />
-      <entry key="S2" value="0.5725604808357035" />
-      <entry key="S5" value="0.8006379915623906" />
-      <entry key="S10" value="0.9674124521257801" />
-      <entry key="S30" value="3.8834986340240647" />
-      <entry key="S60" value="9.446251797777858" />
-      <entry key="M2" value="17.07164375235744" />
-      <entry key="M5" value="35.89084197888602" />
-      <entry key="M10" value="61.28200209426809" />
-      <entry key="M15" value="79.5896703206809" />
-      <entry key="M30" value="122.1003745460604" />
-      <entry key="H1" value="212.65382996612843" />
-      <entry key="H2" value="422.69596176511857" />
-      <entry key="H4" value="776.639341048083" />
-      <entry key="D1" value="1598.4601435582283" />
-      <entry key="W1" value="1850.9192095383523" />
+      <entry key="MS100" value="1.3427249362179696" />
+      <entry key="MS500" value="2.427227173119581" />
+      <entry key="S2" value="4.52450204172569" />
+      <entry key="S5" value="8.42658758198129" />
+      <entry key="S10" value="11.685886987727287" />
+      <entry key="S30" value="16.603529984659314" />
+      <entry key="S60" value="20.956390731059507" />
+      <entry key="M2" value="26.520559572037833" />
+      <entry key="M5" value="33.18079085446432" />
+      <entry key="M10" value="39.13770572174648" />
+      <entry key="M15" value="45.248004998250636" />
+      <entry key="M30" value="75.72769905948421" />
+      <entry key="H1" value="173.7015191764729" />
+      <entry key="H2" value="401.5360517327079" />
+      <entry key="H4" value="828.3003935573391" />
+      <entry key="D1" value="2168.406932903781" />
+      <entry key="W1" value="2676.518552804494" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -135,35 +149,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Django Server.Toy qachon_DRF.executor": "Run",
-    "JavaScript Debug.dashboard.html.executor": "Coverage",
-    "JavaScript Debug.guests.html.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.manage.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/linux/PycharmProjects/Toy qachon_DRF/db.sqlite3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.completion.inline"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django Server.Toy qachon_DRF.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: templates.executor&quot;: &quot;Debug&quot;,
+    &quot;JavaScript Debug.dashboard.html.executor&quot;: &quot;Coverage&quot;,
+    &quot;JavaScript Debug.guests.html.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/linux/PycharmProjects/Toy qachon_DRF/templates/budget.html&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -174,6 +189,29 @@
     </key>
   </component>
   <component name="RunManager" selected="Django Server.Toy qachon_DRF">
+    <configuration name="Test: templates" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="Toy qachon_DRF" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
+      <option name="TARGET" value="templates" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Toy qachon_DRF/dashboard.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -234,6 +272,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Django tests.Test: templates" />
         <item itemvalue="JavaScript Debug.guests.html" />
         <item itemvalue="JavaScript Debug.dashboard.html" />
         <item itemvalue="Python.manage" />
@@ -243,8 +282,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-56aff7b04f6f-JavaScript-PY-263.7307.206" />
-        <option value="bundled-python-sdk-34611be1ca5a-e0583fc556d1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-263.7307.206" />
+        <option value="bundled-js-predefined-d6986cc7102b-56aff7b04f6f-JavaScript-PY-263.7307.351" />
+        <option value="bundled-python-sdk-342d7f33e45b-e0583fc556d1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-263.7307.351" />
       </set>
     </attachedChunks>
   </component>
@@ -272,7 +311,17 @@
       <workItem from="1793801178462" duration="8412000" />
       <workItem from="1794670074127" duration="8333000" />
       <workItem from="1794821300265" duration="5252000" />
-      <workItem from="1794828425714" duration="1891000" />
+      <workItem from="1794828425714" duration="3067000" />
+      <workItem from="1794831505203" duration="2360000" />
+      <workItem from="1794835982329" duration="9733000" />
+      <workItem from="1794994684733" duration="778000" />
+      <workItem from="1795009031658" duration="1759000" />
+      <workItem from="1795018730919" duration="516000" />
+      <workItem from="1795102227887" duration="22000" />
+      <workItem from="1795173514375" duration="656000" />
+      <workItem from="1795423531583" duration="9424000" />
+      <workItem from="1795614235772" duration="8000" />
+      <workItem from="1795707124607" duration="1333000" />
     </task>
     <task id="LOCAL-00001" summary="new message">
       <option name="closed" value="true" />
@@ -322,7 +371,23 @@
       <option name="project" value="LOCAL" />
       <updated>1792331134328</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="new message">
+      <option name="closed" value="true" />
+      <created>1794830580754</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1794830580754</updated>
+    </task>
+    <task id="LOCAL-00008" summary="new message">
+      <option name="closed" value="true" />
+      <created>1794830601680</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1794830601680</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

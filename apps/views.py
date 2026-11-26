@@ -1,14 +1,16 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework.permissions import AllowAny
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.views.generic import TemplateView
-from apps.models import Guests , BudgetItem , Task , Vendor
-from apps.serializers import RegisterSerializers, GuestSerializers, UserSerializers , BudgetItemSerializers , TaskModelSerializers, VendorSerializer, ChangePasswordSerializer
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView , ListAPIView, RetrieveAPIView
+from apps.models import Guests , BudgetItem , Task , Vendor, Review
+from apps.serializers import RegisterSerializers, GuestSerializers, UserSerializers , BudgetItemSerializers , TaskModelSerializers, VendorSerializer, ChangePasswordSerializer, ReviewSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView , ListAPIView, RetrieveAPIView , get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from datetime import date , timedelta
 from django.db.models import Sum , F
+from apps.plan import check_limit, plan_summary , PLAN_DURATIONS
 
 class WelcomeTemplateView(TemplateView):
     template_name = 'welcome.html'
@@ -41,6 +43,9 @@ class ProfileTemplateView(TemplateView):
 
 class SettingsTemplateView(TemplateView):
     template_name = 'settings.html'
+
+class PlansTemplateView(TemplateView):
+    template_name = 'plans.html'
 
 
 @extend_schema(request=ChangePasswordSerializer, responses={200: None})
@@ -81,6 +86,7 @@ class GuestListCreateView(ListCreateAPIView):
         return Guests.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
+        check_limit(self.request.user, 'guests')
         serializer.save(user=self.request.user)
 
 @extend_schema(tags=['Project API Guests'])
@@ -101,6 +107,7 @@ class TaskListCreateView(ListCreateAPIView):
         return Task.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
+        check_limit(self.request.user, 'tasks')
         serializer.save(user=self.request.user)
 
 
@@ -186,6 +193,7 @@ class DashboardAPIView(APIView):
             'tasks': tasks_data,
             'alerts': alerts,
             'priority_tasks': priority_tasks,
+            'plan': plan_summary(user),
         })
 
 @extend_schema(tags=['Me API '])
@@ -205,6 +213,7 @@ class BudgetListCreateView(ListCreateAPIView):
         return BudgetItem.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
+        check_limit(self.request.user, 'budget_items')
         serializer.save(user=self.request.user)
 
 @extend_schema(tags=['Project API Budget'])
@@ -238,4 +247,53 @@ class VendorDetailView(RetrieveAPIView):
 
     def get_queryset(self):
         return Vendor.objects.filter(is_active=True)
+
+
+
+@extend_schema(request=ReviewSerializer, responses=ReviewSerializer , tags=['Project API Vendor'])
+class VendorReviewListCreateView(ListCreateAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Review.objects.filter(vendor_id=self.kwargs['vendor_id']).select_related('user')
+
+    def perform_create(self, serializer):
+        vendor = get_object_or_404(Vendor, pk=self.kwargs['vendor_id'], is_active=True)
+        if Review.objects.filter(vendor=vendor, user=self.request.user).exists():
+            raise ValidationError({'detail': "Siz bu vendorga allaqachon sharh yozgansiz"})
+        serializer.save(vendor=vendor, user=self.request.user)
+
+
+@extend_schema(request=ReviewSerializer, responses=ReviewSerializer)
+class ReviewDetailView(RetrieveUpdateDestroyAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Review.objects.filter(user=self.request.user)
+
+
+
+
+
+class PlanPricesApiView(APIView):
+    permission_classes = []  # tariflar ochiq, ro'yxatdan o'tmaganlar ham ko'radi
+
+    def get(self, request):
+        base = PLAN_DURATIONS['1m']['price']
+        terms = []
+        for key, t in PLAN_DURATIONS.items():
+            months = t['days'] // 30
+            total = t['price']
+            terms.append({
+                'key': key,
+                'label': t['label'],
+                'months': months,
+                'total': total,
+                'per_month': round(total / months),
+                'discount': t.get('discount', 0),
+                'old_total': base * months,
+            })
+        return Response({'terms': terms})
 

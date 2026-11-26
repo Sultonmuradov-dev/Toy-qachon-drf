@@ -574,3 +574,114 @@ tbody tr:hover { background: #fdf8f2; }
 /* Admin tugmasi (vendorlar sahifasi) */
 .sidebar-footer .admin-only { margin-bottom: 8px; border-style: dashed; color: var(--gold-d); }
 .sidebar-footer .admin-only[hidden] { display: none; }
+
+/* =========================================================
+   TARIFLAR, FOYDALANUVCHI MENYUSI, SHARHLAR
+   ========================================================= */
+
+/* ---------- Bosh sahifadagi tariflar bo'limi ---------- */
+.pricing { padding-top: 60px; }
+.pricing > h2 {
+  font-family: var(--serif); font-size: 40px; font-weight: 600; text-align: center; margin-bottom: 6px;
+}
+.pricing > h2::after {
+  content: ""; display: block; width: 160px; height: 14px; margin: 10px auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 14'%3E%3Cg stroke='%23b8892f' stroke-width='1' fill='none'%3E%3Cpath d='M0 7h62M98 7h62'/%3E%3Cpath d='M80 1l6 6-6 6-6-6z' fill='%23e9c9c3'/%3E%3Ccircle cx='68' cy='7' r='1.6' fill='%23b8892f'/%3E%3Ccircle cx='92' cy='7' r='1.6' fill='%23b8892f'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+.pricing > .muted { text-align: center; margin-bottom: 30px; }
+.plan-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 4px 0 8px; }
+.plan-list li { position: relative; padding-left: 26px; font-size: 14px; }
+.plan-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 1px; width: 18px; height: 18px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  background: var(--gold-soft); color: var(--gold-d);
+}
+.plan-list li.soon { color: var(--muted); }
+
+/* ---------- Tarif kartochkalari ---------- */
+.pricing-grid { gap: 22px; }
+.plan-card {
+  padding: 30px 26px; gap: 16px;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.plan-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.plan-card h3 { font-family: var(--serif); font-size: 28px; font-weight: 600; }
+.plan-price {
+  font-family: var(--serif); font-size: 34px; font-weight: 600; line-height: 1.1;
+  font-variant-numeric: lining-nums; color: var(--gold-d);
+}
+.plan-card-featured {
+  border: 1.5px solid var(--gold-l);
+  background: linear-gradient(180deg, #fffaf1 0%, var(--card) 40%);
+  box-shadow: var(--shadow-lg);
+}
+.plan-card-featured::before {
+  content: ""; position: absolute; inset: 7px; border-radius: 13px;
+  border: 1px solid var(--gold-l); opacity: .45; pointer-events: none;
+}
+.plan-tag {
+  background: var(--gold-grad); font-weight: 600; letter-spacing: .04em; padding: 4px 14px;
+  box-shadow: 0 6px 14px -8px rgba(154, 112, 36, .9);
+}
+.plan-current { box-shadow: 0 0 0 2px var(--gold), var(--shadow-lg); }
+.feat-list li::before { background: var(--gold-soft); color: var(--gold-d); }
+.feat-list li.no::before { background: #f4ede4; color: #b8aa9c; }
+.feat-list li.soon::after { margin-left: 4px; font-style: italic; }
+
+/* Muddat tanlash */
+.term-btn { background: #fff; border-color: var(--line); transition: all .2s; }
+.term-btn:hover { border-color: var(--gold-l); }
+.term-btn.is-active { background: var(--gold-grad); border-color: transparent; color: #fff; }
+.term-btn .save { color: #3e8560; background: #e8f3ec; }
+.term-summary b { font-family: var(--serif); font-size: 20px; font-variant-numeric: lining-nums; }
+
+/* To'lov bloki */
+.support-box {
+  position: relative; overflow: hidden; border: none; color: #f7ecdf; padding: 34px 38px;
+  background: linear-gradient(135deg, #3b2a24 0%, #4d342b 55%, #5e3f33 100%);
+}
+.support-box::after {
+  content: ""; position: absolute; right: -30px; bottom: -60px; width: 240px; height: 240px;
+  background: url("img/floral.svg") no-repeat center / contain; opacity: .3; transform: scaleX(-1); pointer-events: none;
+}
+.support-box > * { position: relative; z-index: 1; }
+.support-box .muted { color: #d9c6b4; }
+.pay-title { font-family: var(--serif); font-size: 30px; font-weight: 600; color: #fff; }
+.pay-logo { border: none; box-shadow: 0 8px 20px -10px rgba(0, 0, 0, .5); }
+.support-label { color: var(--gold-l); letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+.support-box:target { box-shadow: 0 0 0 3px var(--gold-l); }
+
+/* ---------- Foydalanuvchi menyusi ---------- */
+.user-chip { cursor: pointer; }
+.plan-badge { padding: 4px 10px; font-weight: 600; background: #f4ede4; color: var(--muted); }
+.plan-badge.plan-premium { background: var(--gold-grad); color: #fff; }
+.plan-badge.plan-vip { background: linear-gradient(135deg, #3b2a24, #5e3f33); color: var(--gold-l); }
+.user-menu {
+  border-radius: 16px; border-color: var(--line); padding: 8px; background: var(--card);
+  box-shadow: 0 24px 50px -20px rgba(46, 36, 32, .45);
+  animation: riseIn .2s ease both;
+}
+.user-menu-head { padding: 12px; }
+.um-name { font-family: var(--serif); font-size: 20px; }
+.um-plan { color: var(--gold-d); font-weight: 500; }
+.user-menu-item { border-radius: 10px; transition: background .15s; }
+.user-menu-item:hover { background: var(--rose-soft); }
+.um-logout { color: var(--rose-d); }
+
+/* ---------- Bosh sahifa: tarif banneri ---------- */
+.plan-banner {
+  border-radius: 16px; padding: 16px 20px; margin-bottom: 18px;
+  background: linear-gradient(135deg, #fdf6ec, var(--rose-soft)); border: 1px solid #f0e0d4;
+}
+.plan-banner .muted { color: #6b5e55; }
+.plan-banner-active { background: linear-gradient(135deg, #fffaf1, var(--gold-soft)); border-color: var(--gold-l); }
+
+/* ---------- Sharhlar oynasi ---------- */
+#reviewList .task-title { color: var(--text); }
+#reviewList .task-title::after { content: ""; }
+.modal-box textarea.input { width: 100%; resize: vertical; font: inherit; }
+
+@media (max-width: 560px) {
+  .support-box { padding: 26px 22px; }
+  .pricing > h2 { font-size: 32px; }
+}
