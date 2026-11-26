@@ -1,0 +1,72 @@
+{% load static %}
+<div class="pricing-wrap">
+
+  <section class="pricing-grid">
+
+    <div class="card plan-card" data-plan="free">
+      <h3>Bepul</h3>
+      <div class="plan-price">0 so'm</div>
+      <ul class="feat-list">
+        <li>30 tagacha mehmon</li>
+        <li>5 tagacha byudjet kategoriyasi</li>
+        <li>20 tagacha vazifa</li>
+        <li>Vendorlar katalogi va sharhlar</li>
+        <li class="no">Cheksiz mehmon va byudjet</li>
+        <li class="no">PDF hisobot</li>
+        <li class="no">Email eslatmalar</li>
+        <li class="no">Ikki kishi birga boshqarishi</li>
+        <li class="no">Tasdiqlangan vendor belgisi</li>
+      </ul>
+      <a class="btn btn-block plan-btn" href="{% url 'register' %}" data-plan-btn>Bepul boshlash</a>
+    </div>
+
+    <div class="card plan-card plan-card-featured" data-plan="premium">
+      <span class="plan-tag">Mashhur</span>
+      <h3>Premium</h3>
+      <div class="plan-price" id="premiumPrice">Yuklanmoqda...</div>
+
+      <div class="term-picker" id="termPicker"></div>
+      <div class="term-summary" id="termSummary"></div>
+
+      <ul class="feat-list">
+        <li>Cheksiz mehmon</li>
+        <li>Cheksiz byudjet kategoriyasi</li>
+        <li>Cheksiz vazifa</li>
+        <li>Vendorlar katalogi va sharhlar</li>
+        <li class="soon">PDF hisobot</li>
+        <li class="soon">Email eslatmalar</li>
+        <li class="no">Ikki kishi birga boshqarishi</li>
+        <li class="no">Tasdiqlangan vendor belgisi</li>
+      </ul>
+      <a class="btn btn-gold btn-block plan-btn" href="#supportBox" data-plan-btn>Obuna olish</a>
+    </div>
+
+    <div class="card plan-card" data-plan="vip">
+      <h3>VIP</h3>
+      <div class="plan-price">Narx tez orada</div>
+      <ul class="feat-list">
+        <li>Premium'dagi hamma imkoniyat</li>
+        <li class="soon">Ikki kishi birga boshqarishi</li>
+        <li class="soon">Tasdiqlangan vendor belgisi</li>
+        <li class="soon">PDF hisobot</li>
+        <li class="soon">Email eslatmalar</li>
+      </ul>
+      <a class="btn btn-block plan-btn" href="#supportBox" data-plan-btn>Obuna olish</a>
+    </div>
+
+  </section>
+
+  <div class="support-box" id="supportBox">
+    <div class="pay-title">Click yoki Payme orqali to'lash</div>
+    <p class="muted">To'lov tizimi tez orada ulanadi. Hozircha Premium yoki VIP tarifni quyidagi xizmat orqali oling:</p>
+
+    <div class="pay-methods">
+      <img class="pay-logo" src="{% static 'img/click.png' %}" alt="Click">
+      <img class="pay-logo" src="{% static 'img/payme.png' %}" alt="Payme">
+    </div>
+
+    <div class="support-label">Qo'llab-quvvatlash xizmati</div>
+    <a class="btn btn-gold" href="https://t.me/toyqachon_support" target="_blank" rel="noopener">✈️ @toyqachon_support</a>
+  </div>
+
+</div>

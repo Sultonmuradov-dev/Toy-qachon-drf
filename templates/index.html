@@ -12,7 +12,7 @@
 <div class="layout">
 
   <aside class="sidebar" id="sidebar">
-    <div class="brand">Nikoh<span>Plan</span></div>
+    <div class="brand">To'y<span>Qachon</span></div>
 
     <a class="nav-link" data-nav href="{% url 'index' %}">🏠 Bosh sahifa</a>
 
@@ -23,6 +23,12 @@
 
     <div class="nav-title">Katalog</div>
     <a class="nav-link" data-nav href="{% url 'vendors' %}">🏛 Vendorlar</a>
+
+
+    <div class="nav-title">Hisob</div>
+    <a class="nav-link" data-nav href="{% url 'plans' %}">⭐ Tariflar</a>
+    <a class="nav-link" data-nav href="{% url 'settings' %}">⚙️ Sozlamalar</a>
+
 
     <div class="sidebar-footer">
       <a class="btn btn-gold btn-block" href="{% url 'guests' %}">+ Tez qo'shish</a>
@@ -47,6 +53,8 @@
         <h1 id="greeting">Xush kelibsiz</h1>
       </div>
     </div>
+
+    <div id="planBanner"></div>
 
     <section class="card">
       <div class="card-head">

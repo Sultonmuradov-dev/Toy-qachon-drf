@@ -89,7 +89,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -100,10 +100,11 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
-STATIC_ROOT = join(BASE_DIR, 'static')
+STATIC_ROOT = join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
+
 
 MAILERS = {
     'default': {

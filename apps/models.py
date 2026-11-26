@@ -1,10 +1,13 @@
 from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE
 from django.db.models.enums import TextChoices
-from django.db.models import CharField, BigIntegerField,  DateField, BooleanField, Model , TextField, DecimalField, ImageField, URLField, PositiveSmallIntegerField
+from django.db.models import CharField, BigIntegerField, Avg, DateTimeField, UniqueConstraint, DateField, BooleanField, Model , TextField, DecimalField, ImageField, URLField, PositiveSmallIntegerField
 from django.db.models.fields.related import ForeignKey
-
+from decimal import Decimal
+from django.core.validators import MinValueValidator, MaxValueValidator
 from apps.managers import UserManager
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -15,12 +18,28 @@ class User(AbstractUser):
         UZ_CYRILLIC = "uz_cyrillic", "O'zbek (Krill)"
         RU = "ru", "Rus"
 
+
+    class PlanType(TextChoices):
+        FREE = 'free', 'Bepul'
+        PREMIUM = 'premium', 'Premium'
+        VIP = 'vip', 'VIP'
+
+    plan = CharField(max_length=10, choices=PlanType.choices, default=PlanType.FREE)
+    plan_expires_at = DateTimeField(null=True, blank=True)
+
+    @property
+    def active_plan(self):
+        # Muddati o'tgan tarif avtomatik bepulga qaytadi
+        if self.plan != self.PlanType.FREE and self.plan_expires_at and self.plan_expires_at < timezone.now():
+            return self.PlanType.FREE.value
+        return self.plan
+
+
     username = None
     phone_number = CharField(max_length=255, unique=True)
     telegram_id = BigIntegerField(null=True, blank=True, unique=True)
     language = CharField(max_length=15, choices=LanguageType, default=LanguageType.UZ_LATIN)
     wedding_day = DateField(null=True, blank=True)
-    premium_status = BooleanField(default=False)
 
     objects = UserManager()
 
@@ -113,6 +132,11 @@ class Vendor(Model):
     def __str__(self):
         return self.name
 
+    def recalculate_rating(self):
+        avg = self.reviews.aggregate(a=Avg('stars'))['a']
+        self.rating = Decimal(str(round(avg, 1))) if avg else Decimal('0')
+        self.save(update_fields=['rating'])
+
 
 class VendorImage(Model):
     vendor = ForeignKey('apps.Vendor', on_delete=CASCADE, related_name='images')
@@ -122,7 +146,40 @@ class VendorImage(Model):
         return f'{self.vendor.name} — rasm'
 
 
-    
+class Review(Model):
+    vendor = ForeignKey('apps.Vendor', on_delete=CASCADE, related_name='reviews')
+    user = ForeignKey('apps.User', on_delete=CASCADE, related_name='reviews')
+    stars = PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    comment = TextField(blank=True, max_length=500)
+    created_at = DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        constraints = [
+            UniqueConstraint(fields=['vendor', 'user'], name='unique_vendor_review'),
+        ]
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.vendor.recalculate_rating()
+
+
+    def __str__(self):
+        return f'{self.vendor.name}: {self.stars} ★'
+
+
+@receiver(post_delete, sender=Review)
+def update_vendor_rating_on_delete(sender, instance, **kwargs):
+    # Vendor o'zi o'chirilayotgan bo'lsa (cascade), reytingni hisoblamaymiz
+    vendor = Vendor.objects.filter(pk=instance.vendor_id).first()
+    if vendor:
+        vendor.recalculate_rating()
+
+
+
+
+
+
 
 
 

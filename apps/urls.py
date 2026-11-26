@@ -1,8 +1,10 @@
 from django.urls import path
+from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from apps.views import RegisterApiView, GuestListCreateView, GuestDetailView, DashboardAPIView, MeApiVIew, \
-    BudgetListCreateView, BudgetDetailView, TaskListCreateView, TaskDetailView, VendorListView, VendorDetailView , ChangePasswordView
+from apps.views import (RegisterApiView, GuestListCreateView, GuestDetailView, DashboardAPIView, MeApiVIew, \
+    BudgetListCreateView, BudgetDetailView, TaskListCreateView, TaskDetailView, VendorListView, VendorDetailView , ChangePasswordView, VendorReviewListCreateView,
+    ReviewDetailView, PlanPricesApiView)
 
 urlpatterns = [
 
@@ -17,8 +19,11 @@ urlpatterns = [
     path('tasks/<int:pk>', TaskDetailView.as_view(), name='api-tasks-detail'),
     path('vendors/', VendorListView.as_view(), name='api-vendors'),
     path('vendors/<int:pk>/', VendorDetailView.as_view(), name='api-vendor-detail'),
+    path('vendors/<int:vendor_id>/reviews/', VendorReviewListCreateView.as_view(), name='api-vendor-reviews'),
+    path('reviews/<int:pk>/', ReviewDetailView.as_view(), name='api-review-detail'),
     path('users/register/', RegisterApiView.as_view(), name='api-register'),
     path('users/change-password/', ChangePasswordView.as_view(), name='api-change-password'),
+    path('plans/prices/', PlanPricesApiView.as_view(), name='api-plan-prices'),
     path('users/login/', TokenObtainPairView.as_view(), name='api-login'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
 ]

@@ -158,3 +158,46 @@ document.addEventListener('click', e => {
     window.location.href = '/login/';
   }
 });
+
+
+// Access token eskirsa, refresh token bilan yangilaydi
+async function refreshAccessToken() {
+  const refresh = localStorage.getItem('refresh');
+  if (!refresh) return null;
+
+  const res = await fetch('/api/v1/token/refresh/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ refresh }),
+  });
+  if (!res.ok) return null;
+
+  const data = await res.json();
+  localStorage.setItem('access', data.access);
+  return data.access;
+}
+
+// Barcha API so'rovlari uchun: 401 bo'lsa tokenni yangilab, qayta yuboradi
+async function authFetch(url, options = {}) {
+  const send = token => fetch(url, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options.headers || {}),
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  let token = localStorage.getItem('access');
+  let res = token ? await send(token) : null;
+
+  if (!res || res.status === 401) {
+    token = await refreshAccessToken();
+    if (!token) {
+      logoutNow();
+      throw new Error('Sessiya tugadi, qayta kiring');
+    }
+    res = await send(token);
+  }
+  return res;
+}
