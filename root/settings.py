@@ -3,8 +3,14 @@ from datetime import timedelta
 from os.path import join
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Loyiha papkasidagi .env faylidan sozlamalarni o'qiymiz (bo'lsa).
+# Docker ichida o'zgaruvchilar docker-compose orqali beriladi va ustun turadi.
+load_dotenv(BASE_DIR / '.env')
 
 
 SECRET_KEY = os.getenv(
@@ -67,27 +73,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'root.wsgi.application'
 
 
-# POSTGRES_DB berilsa (masalan, docker-compose ichida) PostgreSQL ishlatiladi,
-# aks holda lokal SQLite.
-if os.getenv('POSTGRES_DB'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('POSTGRES_DB'),
-            'USER': os.getenv('POSTGRES_USER', 'postgres'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
-            'HOST': os.getenv('POSTGRES_HOST', 'db'),
-            'PORT': os.getenv('POSTGRES_PORT', '5432'),
-        }
+# Ma'lumotlar bazasi: har doim PostgreSQL.
+# - Docker ichida: docker-compose.yml POSTGRES_HOST=database, POSTGRES_PORT=5432 beradi.
+# - PyCharm'dan (manage.py runserver): standart qiymatlar Docker'dagi bazaga ulanadi
+#   (localhost:5433). Avval bazani yoqing: docker compose up -d database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB', 'toy_qachon'),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('POSTGRES_PORT', '5433'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
+# Eski SQLite bazasi faqat ma'lumotlarni PostgreSQL'ga bir martalik ko'chirish uchun.
+# db.sqlite3 fayli bo'lsagina qo'shiladi. Ko'chirish: make sqlite-to-pg (Makefile'ga qarang).
+if (BASE_DIR / 'db.sqlite3').exists():
+    DATABASES['sqlite'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [

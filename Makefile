@@ -1,4 +1,6 @@
-run:
+db:
+	docker compose up -d database
+run: db
 	./manage.py runserver
 mig:
 	./manage.py makemigrations
@@ -11,3 +13,10 @@ logs:
 	docker compose logs -f web
 superuser:
 	docker compose exec web python manage.py createsuperuser
+# Eski db.sqlite3 dagi ma'lumotlarni PostgreSQL'ga ko'chirish (bir marta)
+sqlite-to-pg: db
+	./manage.py migrate
+	./manage.py dumpdata --database=sqlite --natural-foreign --natural-primary \
+		-e contenttypes -e auth.permission -e admin.logentry -e sessions \
+		--indent 2 -o sqlite_data.json
+	./manage.py loaddata sqlite_data.json
