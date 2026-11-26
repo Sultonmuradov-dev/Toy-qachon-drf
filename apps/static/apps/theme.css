@@ -570,3 +570,7 @@ tbody tr:hover { background: #fdf8f2; }
   .premium-card h2 { font-size: 28px; }
   .form-actions .btn { width: 100%; }
 }
+
+/* Admin tugmasi (vendorlar sahifasi) */
+.sidebar-footer .admin-only { margin-bottom: 8px; border-style: dashed; color: var(--gold-d); }
+.sidebar-footer .admin-only[hidden] { display: none; }

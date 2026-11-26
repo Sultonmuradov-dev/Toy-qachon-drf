@@ -33,7 +33,9 @@
     <a class="nav-link" data-nav href="{% url 'settings' %}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg><span>Sozlamalar</span></a>
 
     <div class="sidebar-footer">
-      <a class="btn btn-gold btn-block" href="/admin/apps/vendor/add/" target="_blank" rel="noopener">+ Vendor qo'shish</a>
+      <!-- Faqat admin (is_staff) uchun ko'rinadi — vendors.js oxiriga qarang -->
+      <a class="btn btn-block admin-only" id="vendorAdminBtn" href="/admin/apps/vendor/add/" target="_blank" rel="noopener" hidden>+ Vendor qo'shish (admin)</a>
+      <a class="btn btn-gold btn-block" href="{% url 'guests' %}">+ Tez qo'shish</a>
     </div>
   </aside>
 

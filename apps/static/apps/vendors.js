@@ -120,3 +120,14 @@ vid('vendorSearch').addEventListener('input', render);
 vid('priceFilter').addEventListener('change', render);
 
 loadVendors();
+// ---------- Admin tugmasi ----------
+// "+ Vendor qo'shish" Django admin'ga olib boradi, shuning uchun faqat admin (is_staff) ko'radi.
+(async () => {
+  const btn = vid('vendorAdminBtn');
+  const token = localStorage.getItem('access');
+  if (!btn || !token) return;
+  try {
+    const res = await fetch('/api/v1/users/me/', { headers: { Authorization: `Bearer ${token}` } });
+    if (res.ok && (await res.json()).is_staff) btn.hidden = false;
+  } catch (_) { /* tugma yashirin qoladi */ }
+})();

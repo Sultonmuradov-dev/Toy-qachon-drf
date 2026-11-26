@@ -46,10 +46,10 @@ class UserSerializers(ModelSerializer):
         model = User
         fields = [
             'phone_number', 'first_name', 'last_name', 'language', 'wedding_day',
-            'telegram_id', 'premium_status', 'date_joined',
+            'telegram_id', 'premium_status', 'date_joined', 'is_staff',
         ]
         # premium faqat to'lovdan keyin backend tomonidan yoqiladi (2-bosqich)
-        read_only_fields = ['phone_number', 'premium_status', 'date_joined']
+        read_only_fields = ['phone_number', 'premium_status', 'date_joined', 'is_staff']
         extra_kwargs = {'telegram_id': {'allow_null': True, 'required': False}}
 
 
