@@ -1,4 +1,4 @@
-FROM python:3.13-slim
+FROM python:3.14-alpine
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -7,11 +7,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
+# Avval faqat req.txt — kod o'zgarganda paketlar qayta o'rnatilmaydi (tez build)
 COPY req.txt .
 RUN pip install -r req.txt
 
 COPY . .
-RUN chmod +x /app/entrypoint.sh
+# Windows'da git CRLF qilib yuborsa ham skript ishlashi uchun
+RUN sed -i 's/\r$//' entrypoint.sh && chmod +x entrypoint.sh
 
 EXPOSE 8000
 
