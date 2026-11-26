@@ -10,4 +10,3 @@
 /static/
 __pycache__/
 *.pyc
-/sqlite_data.json

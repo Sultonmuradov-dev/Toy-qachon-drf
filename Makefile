@@ -16,7 +16,4 @@ superuser:
 # Eski db.sqlite3 dagi ma'lumotlarni PostgreSQL'ga ko'chirish (bir marta)
 sqlite-to-pg: db
 	./manage.py migrate
-	./manage.py dumpdata --database=sqlite --natural-foreign --natural-primary \
-		-e contenttypes -e auth.permission -e admin.logentry -e sessions \
-		--indent 2 -o sqlite_data.json
-	./manage.py loaddata sqlite_data.json
+	./manage.py import_sqlite
