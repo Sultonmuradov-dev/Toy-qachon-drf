@@ -36,7 +36,7 @@ class VendorTemplateView(TemplateView):
 
 
 class ProfileTemplateView(TemplateView):
-    template_name = ''
+    template_name = 'profile.html'
 
 
 class SettingsTemplateView(TemplateView):
