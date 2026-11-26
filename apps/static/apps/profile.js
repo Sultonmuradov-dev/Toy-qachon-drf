@@ -75,8 +75,10 @@ function renderProfile(u) {
   pSetText('userChip', u.first_name || prettyPhone(u.phone_number));
 
   const plan = pEl('pPlan');
-  plan.textContent = u.premium_status ? 'Premium' : 'Bepul tarif';
-  plan.className = 'badge ' + (u.premium_status ? 'amber' : '');
+  const isPaid = u.plan && u.plan !== 'free';
+  plan.textContent = isPaid ? `${u.plan_label} tarif` : 'Bepul tarif';
+  plan.className = 'badge ' + (isPaid ? 'amber' : '');
+  pSetText('pPlanUntil', isPaid && u.plan_expires_at ? `${pDate(u.plan_expires_at)} gacha` : '');
 
   pSetText('pWedding', pDate(u.wedding_day));
   pSetText('pJoined', pDate(u.date_joined));

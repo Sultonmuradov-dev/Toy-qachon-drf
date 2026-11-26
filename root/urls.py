@@ -15,6 +15,7 @@ from apps.views import (
     VendorTemplateView,
     ProfileTemplateView,
     SettingsTemplateView,
+    PlansTemplateView,
 )
 
 
@@ -32,6 +33,8 @@ urlpatterns = [
     path('vendors/', VendorTemplateView.as_view(), name='vendors'),
     path('profile/', ProfileTemplateView.as_view(), name='profile'),
     path('settings/', SettingsTemplateView.as_view(), name='settings'),
+
+    path('plans/', PlansTemplateView.as_view(), name='plans'),
 
     # Swagger / hujjatlar
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

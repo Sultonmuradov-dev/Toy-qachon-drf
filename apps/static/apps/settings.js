@@ -1,4 +1,4 @@
-// Sozlamalar sahifasi — til, parol va premium holati
+// Sozlamalar sahifasi — til, parol va tarif holati
 
 const SETTINGS_API = '/api/v1';
 const sEl = id => document.getElementById(id);
@@ -38,9 +38,14 @@ function renderSettings(u) {
   const chip = sEl('userChip');
   if (chip) chip.textContent = u.first_name || u.phone_number;
 
-  sEl('premiumStatus').textContent = u.premium_status
-    ? "Sizda Premium tarif faol. Rahmat!"
-    : 'Hozir siz bepul tarifdasiz.';
+  const isPaid = u.plan && u.plan !== 'free';
+  let text = isPaid ? `Sizda ${u.plan_label} tarif faol.` : 'Hozir siz bepul tarifdasiz.';
+  if (isPaid && u.plan_expires_at) {
+    const [y, m, d] = u.plan_expires_at.slice(0, 10).split('-');
+    text += ` Muddati: ${d}.${m}.${y} gacha.`;
+  }
+  sEl('premiumStatus').textContent = text;
+  sEl('premiumBtn').textContent = isPaid ? 'Tarifni boshqarish' : "Premium'ga o'tish";
 }
 
 // ---------- Til ----------

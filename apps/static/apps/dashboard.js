@@ -162,6 +162,7 @@ function renderDashboard(d) {
   renderAlerts(d);
   renderWedding(d);
   renderPriorityTasks(d);
+  renderPlanBanner(d);
 }
 
 // ---------- Yuklash ----------
@@ -193,3 +194,30 @@ $('saveWeddingBtn').addEventListener('click', async () => {
 });
 
 loadDashboard();
+
+
+function renderPlanBanner(d) {
+  const box = $('planBanner');
+  if (!box || !d.plan) return;
+
+  if (d.plan.name !== 'free') {
+    const until = d.plan.expires_at ? ` · muddati: ${formatDate(d.plan.expires_at.slice(0, 10))}` : '';
+    box.innerHTML = `
+      <div class="plan-banner plan-banner-active">
+        <span>Tarifingiz: <b>${esc(d.plan.label)}</b>${until}</span>
+        <a class="btn btn-sm" href="/plans/">Tarifni ko'rish</a>
+      </div>`;
+    return;
+  }
+
+  const u = d.plan.usage;
+  box.innerHTML = `
+    <div class="plan-banner">
+      <span><b>Bepul tarif</b>
+        <span class="muted"> · mehmonlar ${u.guests.used}/${u.guests.limit},
+        byudjet ${u.budget_items.used}/${u.budget_items.limit},
+        vazifalar ${u.tasks.used}/${u.tasks.limit}</span>
+      </span>
+      <a class="btn btn-gold btn-sm" href="/plans/">Premium olish</a>
+    </div>`;
+}

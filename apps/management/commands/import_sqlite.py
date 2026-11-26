@@ -18,7 +18,7 @@ Ishlatish (avval: docker compose up -d database && python manage.py migrate):
 from django.core.management.base import BaseCommand, CommandError
 from django.db import connections, transaction
 
-from apps.models import BudgetItem, Guests, Task, User, Vendor, VendorImage
+from apps.models import BudgetItem, Guests, Review, Task, User, Vendor, VendorImage
 
 SOURCE = 'sqlite'
 
@@ -31,6 +31,7 @@ PLAN = [
     (BudgetItem, None),
     (Task, None),
     (VendorImage, None),
+    (Review, ('vendor_id', 'user_id')),
 ]
 
 
