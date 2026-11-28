@@ -1,0 +1,30 @@
+# www. bilan kirganlarni asosiy domenga yo'naltiramiz
+www.{$DOMAIN} {
+	redir https://{$DOMAIN}{uri} permanent
+}
+
+{$DOMAIN} {
+	# Javoblarni siqib yuborish (sayt tezroq ochiladi)
+	encode zstd gzip
+
+	# Yuklanadigan fayllar hajmi chegarasi (vendor rasmlari uchun)
+	request_body {
+		max_size 20MB
+	}
+
+	# CSS, JS va rasmlarni Caddy o'zi beradi, Django'ga bormaydi
+	handle_path /static/* {
+		root * /srv/static
+		file_server
+	}
+
+	handle_path /media/* {
+		root * /srv/media
+		file_server
+	}
+
+	# Qolgan hamma so'rov Django'ga (Gunicorn) boradi
+	handle {
+		reverse_proxy web:8000
+	}
+}

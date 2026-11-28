@@ -1,0 +1,52 @@
+
+# web scraping --->
+
+# kun.uz
+
+# HTTP
+
+
+    IP --> IP bu tarmoqdagi qurilmaning manzili. IP malumot qaysi qurilmaga borishini aniqlaydi
+        Version --> IPv4: 32 bit, 192.168.1.1, ~4.3 milliard manzil (yetmay qolgan)
+        IPv6: 128 bit, 2001:db8::1, deyarli cheksiz manzil
+
+        Turlari --> Public ip internetda korinadi
+        Private ip faqat local tarmoqda ishlaydi
+
+        localhost: 127.0.0.1, ya'ni o'z kompyuterimiz.
+
+
+    MAC --> Bu (media access control) mac bu qurilmaning tarmoq kartasiga  fizik manzil
+        U ozgarmaydi va local tarmoqda qurilmani tanib olish uchun ishlatiladi.
+         48 bit boladi
+        IP dan farqi: IP tarmoqga qarab ozgaradi, MAC esa ozgarmaydi
+        Mac har bir qurilmada boladi bazilarda masalan noutbook wifi , lan kabel , bluetooth ning alohida mac manzili boladi
+
+
+    async ->
+    multi threading ->
+    multi processing ->
+    algorithm turlari ->
+    port ->
+    host ->
+    domain ->
+    docker ->
+    postgresql (DDL , DML , view turlari , DCL , TCL , foreign key(M to M , O to M , O to O) ->
+    celery ->
+    Meta Class ->
+    ORM ->
+    OOP tamoillari :
+        class ->
+        object ->
+        abstraction ->
+        inheritance ->
+        encapsulation ->
+        polymorphism ->
+
+    SOLID ->
+    web scraping  ->
+    wep pratacol
+
+
+
+CI/CD 

@@ -1,0 +1,63 @@
+# Server uchun: docker compose -f docker-compose.prod.yml up -d --build
+services:
+  database:
+    image: postgres:17-alpine
+    container_name: toy_prod_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-toy_qachon}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD .env da yozilmagan}
+    # ports YO'Q: serverda baza tashqariga ochilmaydi
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build: .
+    image: toy_qachon:latest
+    container_name: toy_prod_web
+    restart: always
+    env_file:
+      - .env
+    environment:
+      DJANGO_DEBUG: "False"
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:?DJANGO_ALLOWED_HOSTS .env da yozilmagan}
+      DJANGO_CSRF_TRUSTED_ORIGINS: ${DJANGO_CSRF_TRUSTED_ORIGINS:?DJANGO_CSRF_TRUSTED_ORIGINS .env da yozilmagan}
+      POSTGRES_HOST: database
+      POSTGRES_PORT: 5432
+    volumes:
+      - static_data:/app/staticfiles
+      - ./media:/app/media
+    depends_on:
+      database:
+        condition: service_healthy
+
+  caddy:
+    image: caddy:2.8-alpine
+    container_name: toy_prod_caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN:?DOMAIN .env da yozilmagan}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - static_data:/srv/static:ro
+      - ./media:/srv/media:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+
+volumes:
+  pg_data:
+  static_data:
+  caddy_data:
+  caddy_config:
